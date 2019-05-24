@@ -2,9 +2,17 @@
 
 class Database
 {
-    private $db;
+    private static $instance = null;
+    private $db = null;
 
-    function __construct()
+    public static function getInstance()
+    {
+        if (!self::$instance)
+            self::$instance = new self();
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         $this->db = mysqli_connect('localhost', 'pucom', 'puadmin', 'pucom');
     }
@@ -19,10 +27,11 @@ class Database
         mysqli_close($this->db);
     }
 
-    function login($username, $password) {
+    function login($username, $password)
+    {
         $password = password_hash($password, PASSWORD_BCRYPT);
         $sql = "SELECT username, password FROM member WHERE username='$username' AND password='$password';";
         $member = $this->query($sql);
-        return count($member)==1;
+        return count($member) == 1;
     }
 }

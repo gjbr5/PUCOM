@@ -11,6 +11,7 @@ include "../func/database.php";
     <link rel="icon" type="image/png" href="/img/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" type="text/css" href="/css/member/util.css">
     <link rel="stylesheet" type="text/css" href="/css/member/login.css">
 </head>
@@ -67,7 +68,7 @@ include "../func/database.php";
 <script src="/js/member/login.js"></script>
 <?php
 if (isset($_POST['username']) && isset($_POST['password'])) {
-    $db = new Database();
+    $db = Database::getInstance();
     if ($db->login($_POST['username'], $_POST['password'])) {
         $_SESSION['username'] = $_POST['username'];
         echo "<script>location.replace('/');</script>";
