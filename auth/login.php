@@ -11,12 +11,12 @@ include "../func/Language.php";
     <meta charset="UTF-8">
     <title><?php echo $lang['logintitle']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/img/icons/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/member/util.css">
-    <link rel="stylesheet" type="text/css" href="/css/member/login.css">
+    <link rel="icon" type="image/png" href="../img/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/member/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/member/login.css">
 </head>
 <body>
 <div class="limiter">
@@ -24,7 +24,7 @@ include "../func/Language.php";
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="post">
 					<span class="login100-form-title p-b-26">
-						<a href="/"><img src="/img/logo.png"/></a>
+						<a href="../"><img src="../img/logo.png"/></a>
 					</span>
                 <span class="login100-form-title p-b-48">
 						<?php echo $lang['login']; ?>
@@ -66,15 +66,15 @@ include "../func/Language.php";
     </div>
 </div>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/member/login.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/member/login.js"></script>
 <?php
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $db = Database::getInstance();
     if ($db->login($_POST['username'], $_POST['password'])) {
         $_SESSION['username'] = $_POST['username'];
-        echo "<script>location.replace('/');</script>";
+        echo "<script>location.replace('../');</script>";
     } else {
         echo "<script>alert('Login Failed');</script>";
     }

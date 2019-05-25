@@ -8,7 +8,7 @@ include "../func/Language.php";
     <title><?php echo $lang['registertitle']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script src='/js/jquery.min.js'></script>
+    <script src='../js/jquery.min.js'></script>
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -21,14 +21,14 @@ include "../func/Language.php";
     <link href='//fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
     <!-- /font files -->
     <!-- css files -->
-    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/css/member/register.css" rel='stylesheet' type='text/css' media="all"/>
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="../css/member/register.css" rel='stylesheet' type='text/css' media="all"/>
     <!-- /css files -->
 </head>
 <body>
 
 <!-- Title -->
-<h1 class="header-w3ls"><img src="/img/logo.png"/> <?php echo $lang['register']; ?></h1>
+<h1 class="header-w3ls"><img src="../img/logo.png"/> <?php echo $lang['register']; ?></h1>
 
 <!-- Form -->
 <div class="signup-w3ls">
@@ -98,7 +98,7 @@ include "../func/Language.php";
 </div>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="/js/member/register.js"></script>
+<script src="../js/member/register.js"></script>
 <p class="copyright">© 2016 Splendid Signup Form. All Rights Reserved | Design by <a href="https://w3layouts.com/"
                                                                                      target="_blank">W3layouts</a></p>
 </body>
