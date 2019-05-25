@@ -1,14 +1,11 @@
-<!--https://w3layouts.com/splendid-signup-form-flat-responsive-widget-template/-->
-<!--A Design by W3layouts 
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!doctype html>
-<html lang="en">
+<?php
+$lang = null;
+include "../func/Language.php";
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $lang['lang']; ?>">
 <head>
-    <title>Register</title>
+    <title><?php echo $lang['registertitle']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src='/js/jquery.min.js'></script>
@@ -31,71 +28,71 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
 
 <!-- Title -->
-<h1 class="header-w3ls"><img src="/img/logo.png"/> Register</h1>
+<h1 class="header-w3ls"><img src="/img/logo.png"/> <?php echo $lang['register']; ?></h1>
 
 <!-- Form -->
 <div class="signup-w3ls">
     <form action="register.php" method="post">
         <!-- Username -->
         <div class="form-control">
-            <label class="header">USERNAME* :</label>
-            <input type="text" id="username" name="username" placeholder="Username"
-                   title="Please enter your ID" required/>
+            <label class="header"><?php echo $lang['username']; ?>* :</label>
+            <input type="text" id="username" name="username" placeholder="<?php echo $lang['username']; ?>"
+                   title="<?php echo $lang['enterusername']; ?>" required/>
         </div>
 
         <!-- Password -->
         <div class="form-control">
-            <label class="header">Password* :</label>
-            <input type="password" class="lock" name="password" placeholder="Password" id="password1"
-                   title="Please enter your Password" required/>
+            <label class="header"><?php echo $lang['password']; ?>* :</label>
+            <input type="password" class="lock" name="password" placeholder="<?php echo $lang['password']; ?>"
+                   id="password1"
+                   title="<?php echo $lang['enterpassword']; ?>" required/>
         </div>
         <div class="form-control">
-            <label class="header">Confirm Password* :</label>
-            <input type="password" class="lock" name="confirm-password" placeholder="Confirm Your Password"
+            <label class="header"><?php echo $lang['passwordconfirm']; ?>* :</label>
+            <input type="password" class="lock" name="confirm-password"
+                   placeholder="<?php echo $lang['passwordconfirm']; ?>"
                    id="password2"
-                   title="Please enter your Password again" required/>
+                   title="<?php echo $lang['passwordconfirmtitle']; ?>" required/>
         </div>
 
         <!-- Name -->
         <div class="form-control">
-            <label class="header">First Name* :</label>
-            <input type="text" id="firstname" name="firstname" placeholder="First Name"
-                   title="Please enter your First Name" required/>
-        </div>
-        <div class="form-control">
-            <label class="header">Last Name* :</label>
-            <input type="text" id="lastname" name="lastname" placeholder="Last Name"
-                   title="Please enter your Last Name" required/>
+            <label class="header"><?php echo $lang['name']; ?>* :</label>
+            <input type="text" id="name" name="name" placeholder="<?php echo $lang['name']; ?>"
+                   title="<?php echo $lang['nametitle']; ?>" required/>
         </div>
 
         <!-- Email -->
         <div class="form-control">
-            <label class="header">Email Address* :</label>
+            <label class="header"><?php echo $lang['email']; ?>* :</label>
             <input type="email" id="email" name="email" placeholder="mail@example.com"
-                   title="Please enter a valid email"/>
+                   title="<?php echo $lang['emailtitle']; ?>"/>
         </div>
 
         <!-- Phone -->
         <div class="form-control">
-            <label class="header">Phone :</label>
+            <label class="header"><?php echo $lang['phone']; ?> :</label>
             <input type="text" id="phone" placeholder="010-1234-5678"/>
         </div>
 
         <!-- Address -->
         <div class="form-control">
-            <label class="header">Postcode :</label>
-            <input type="text" id="postcode" name="postcode" onclick="execDaumPostcode()" placeholder="Postcode"
+            <label class="header"><?php echo $lang['postcode']; ?> :</label>
+            <input type="text" id="postcode" name="postcode" onclick="execDaumPostcode()"
+                   placeholder="<?php echo $lang['postcode']; ?>"
                    readonly/>
         </div>
         <div class="form-control">
-            <label class="header">Address :</label>
-            <input type="text" id="roadAddress" name="address" placeholder="Address" readonly/><br/>
+            <label class="header"><?php echo $lang['address']; ?> :</label>
+            <input type="text" id="roadAddress" name="address" placeholder="<?php echo $lang['address']; ?>"
+                   readonly/><br/>
             <label class="header transparent"></label>
-            <input type="text" id="detailAddress" name="detailAddress" placeholder="Detail Address"/>
+            <input type="text" id="detailAddress" name="detailAddress"
+                   placeholder="<?php echo $lang['detailaddress']; ?>"/>
         </div>
 
         <!-- Register Button -->
-        <input type="submit" class="register" value="Register"/>
+        <input type="submit" class="register" value="<?php echo $lang['register']; ?>"/>
     </form>
 
 </div>
