@@ -54,7 +54,7 @@ include "../func/database.php";
 							Don’t have an account?
 						</span>
 
-                    <a class="txt2" href="#">
+                    <a class="txt2" href="register.php">
                         Sign Up
                     </a>
                 </div>

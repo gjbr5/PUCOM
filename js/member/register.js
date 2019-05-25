@@ -1,100 +1,47 @@
-JotForm.init(function () {
-    setTimeout(function () {
-        $('input_10').hint('ex: myname@example.com');
-    }, 20);
-    JotForm.alterTexts({
-        "confirmClearForm": "Are you sure you want to clear the form",
-        "lessThan": "Your score should be less than"
-    });
-    /*INIT-END*/
-});
+<!-- Validation Script -->
+window.onload = function () {
+    document.getElementById("password1").onchange = validatePassword;
+    document.getElementById("password2").onchange = validatePassword;
+};
 
-JotForm.prepareCalculationsOnTheFly([null, null, null, null, {
-    "name": "name",
-    "qid": "4",
-    "text": "Name",
-    "type": "control_fullname"
-}, {"name": "address", "qid": "5", "text": "Address", "type": "control_address"}, {
-    "name": "homeNumber",
-    "qid": "6",
-    "text": "Home Number",
-    "type": "control_phone"
-}, {
-    "name": "cellularNumber",
-    "qid": "7",
-    "text": "Cellular Number",
-    "type": "control_phone"
-}, null, {"name": "workNumber", "qid": "9", "text": "Work Number", "type": "control_phone"}, {
-    "name": "email10",
-    "qid": "10",
-    "text": "E-mail",
-    "type": "control_email"
-}, null, null, {
-    "name": "website",
-    "qid": "13",
-    "text": "Website",
-    "type": "control_textbox"
-}, null, null, null, null, null, null, null, null, null, {
-    "name": "signatureDate",
-    "qid": "23",
-    "text": "Signature date",
-    "type": "control_textbox"
-}, null, null, null, {
-    "name": "submitForm",
-    "qid": "27",
-    "text": "Apply for Membership",
-    "type": "control_button"
-}, {
-    "name": "clickTo28",
-    "qid": "28",
-    "text": "Membership Application",
-    "type": "control_head"
-}, {"name": "signature29", "qid": "29", "text": "Signature", "type": "control_signature"}]);
-setTimeout(function () {
-    JotForm.paymentExtrasOnTheFly([null, null, null, null, {
-        "name": "name",
-        "qid": "4",
-        "text": "Name",
-        "type": "control_fullname"
-    }, {"name": "address", "qid": "5", "text": "Address", "type": "control_address"}, {
-        "name": "homeNumber",
-        "qid": "6",
-        "text": "Home Number",
-        "type": "control_phone"
-    }, {
-        "name": "cellularNumber",
-        "qid": "7",
-        "text": "Cellular Number",
-        "type": "control_phone"
-    }, null, {
-        "name": "workNumber",
-        "qid": "9",
-        "text": "Work Number",
-        "type": "control_phone"
-    }, {
-        "name": "email10",
-        "qid": "10",
-        "text": "E-mail",
-        "type": "control_email"
-    }, null, null, {
-        "name": "website",
-        "qid": "13",
-        "text": "Website",
-        "type": "control_textbox"
-    }, null, null, null, null, null, null, null, null, null, {
-        "name": "signatureDate",
-        "qid": "23",
-        "text": "Signature date",
-        "type": "control_textbox"
-    }, null, null, null, {
-        "name": "submitForm",
-        "qid": "27",
-        "text": "Apply for Membership",
-        "type": "control_button"
-    }, {
-        "name": "clickTo28",
-        "qid": "28",
-        "text": "Membership Application",
-        "type": "control_head"
-    }, {"name": "signature29", "qid": "29", "text": "Signature", "type": "control_signature"}]);
-}, 20);
+function validatePassword() {
+    var pass2 = document.getElementById("password2").value;
+    var pass1 = document.getElementById("password1").value;
+    if (pass1 !== pass2)
+        document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+    else
+        document.getElementById("password2").setCustomValidity('');
+    //empty string means no validation error
+}
+
+<!-- Daum Address API -->
+function execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function (data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== '') {
+                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (extraRoadAddr !== '') {
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById("roadAddress").value = roadAddr + extraRoadAddr;
+        }
+    }).open();
+}
