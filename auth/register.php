@@ -1,6 +1,7 @@
 <?php
 $lang = null;
 include "../func/Language.php";
+include "../func/Database.php";
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang['lang']; ?>">
@@ -28,7 +29,7 @@ include "../func/Language.php";
 <body>
 
 <!-- Title -->
-<h1 class="header-w3ls"><img src="../img/logo.png"/> <?php echo $lang['register']; ?></h1>
+<h1 class="header-w3ls"><img src="../img/pucom.png" style="max-width: 20%;"/> <?php echo $lang['register']; ?></h1>
 
 <!-- Form -->
 <div class="signup-w3ls">
@@ -66,13 +67,13 @@ include "../func/Language.php";
         <div class="form-control">
             <label class="header"><?php echo $lang['email']; ?>* :</label>
             <input type="email" id="email" name="email" placeholder="mail@example.com"
-                   title="<?php echo $lang['emailtitle']; ?>"/>
+                   title="<?php echo $lang['emailtitle']; ?>" required/>
         </div>
 
         <!-- Phone -->
         <div class="form-control">
             <label class="header"><?php echo $lang['phone']; ?> :</label>
-            <input type="text" id="phone" placeholder="010-1234-5678"/>
+            <input type="text" id="phone" name='phone' placeholder="010-1234-5678"/>
         </div>
 
         <!-- Address -->
@@ -98,8 +99,35 @@ include "../func/Language.php";
 </div>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+    <!-- Validation Script -->
+    window.onload = function () {
+        document.getElementById("password1").onchange = validatePassword;
+        document.getElementById("password2").onchange = validatePassword;
+    };
+
+    function validatePassword() {
+        var pass1 = document.getElementById("password1").value;
+        var pass2 = document.getElementById("password2").value;
+        if (pass1 !== pass2)
+            document.getElementById("password2").setCustomValidity("<?php echo $lang['passval'];?>");
+        else
+            document.getElementById("password2").setCustomValidity('');
+        //empty string means no validation error
+    }
+</script>
 <script src="../js/member/register.js"></script>
 <p class="copyright">© 2016 Splendid Signup Form. All Rights Reserved | Design by <a href="https://w3layouts.com/"
                                                                                      target="_blank">W3layouts</a></p>
+<?php
+if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['name']) && isset($_POST['email'])) {
+    $db = Database::getInstance();
+    if ($db->register($_POST)) {
+        $_SESSION['username'] = $_POST['username'];
+        echo "<script>location.replace('../');</script>";
+    }
+    $db->close();
+}
+?>
 </body>
 </html>
