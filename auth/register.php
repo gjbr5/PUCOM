@@ -9,6 +9,16 @@ include "../func/Database.php";
     <title><?php echo $lang['registertitle']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <?php
+    if (register($_POST)) {
+        echo "
+        <script>
+            alert('Welcome!');
+            location.replace('../');
+        </script>
+        ";
+    }
+    ?>
     <script src='../js/jquery.min.js'></script>
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -119,15 +129,7 @@ include "../func/Database.php";
 <script src="../js/member/register.js"></script>
 <p class="copyright">© 2016 Splendid Signup Form. All Rights Reserved | Design by <a href="https://w3layouts.com/"
                                                                                      target="_blank">W3layouts</a></p>
-<?php
-if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['name']) && isset($_POST['email'])) {
-    $db = Database::getInstance();
-    if ($db->register($_POST)) {
-        $_SESSION['username'] = $_POST['username'];
-        echo "<script>location.replace('../');</script>";
-    }
-    $db->close();
-}
-?>
+
+
 </body>
 </html>
