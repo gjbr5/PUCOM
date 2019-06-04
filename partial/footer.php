@@ -22,11 +22,12 @@
                     <div class="footer">
                         <h3 class="footer-title">Categories</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Desktops</a></li>
-                            <li><a href="#">Labtops</a></li>
-                            <li><a href="#">Mice</a></li>
-                            <li><a href="#">Keyboards</a></li>
-                            <li><a href="#">Accessories</a></li>
+                            <li><a href="<?php echo "store.php?c=hotdeals"; ?>">Hot deals</a></li>
+                            <li><a href="<?php echo "store.php?c=desktops"; ?>">Desktops</a></li>
+                            <li><a href="<?php echo "store.php?c=labtops"; ?>">Labtops</a></li>
+                            <li><a href="<?php echo "store.php?c=mice"; ?>">Mice</a></li>
+                            <li><a href="<?php echo "store.php?c=keyboards"; ?>">Keyboards</a></li>
+                            <li><a href="<?php echo "store.php?c=Accessories"; ?>">Accessories</a></li>
                         </ul>
                     </div>
                 </div>

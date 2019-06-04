@@ -36,9 +36,13 @@
 
     </head>
 	<body>
-		<?php
-		include "partial/header.php"
-		?>
+    <!-- HEADER -->
+        <!-- NAVIGATION -->
+	<?php
+	include "partial/header.php"
+	?>
+        <!-- /NAVIGATION -->
+    <!-- /HEADER -->
 
 		<!-- SECTION -->
 		<div class="section">
@@ -490,9 +494,11 @@
 		</div>
 		<!-- /SECTION -->
 
-        <?php
-        include "partial/footer.php"
-        ?>
+    <!-- FOOTER -->
+    <?php
+    include "partial/footer.php"
+    ?>
+    <!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>

@@ -36,9 +36,13 @@
 
     </head>
 	<body>
+    <!-- HEADER -->
+        <!-- NAVIGATION -->
     <?php
     include "partial/header.php"
     ?>
+        <!-- /NAVIGATION -->
+    <!-- /HEADER -->
 
 		<!-- SECTION -->
 		<div class="section">
@@ -96,7 +100,7 @@
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
 									<div class="product-img">
-										<img src="./img/product01.png" alt="">
+                                        <a <?php echo "href=\"product.php?c={$_GET['c']}\";" ?>><img src="./img/product01.png" alt="" ></a>
 										<div class="product-label">
 											<span class="sale">-30%</span>
 											<span class="new">NEW</span>
@@ -227,9 +231,11 @@
 		</div>
 		<!-- /SECTION -->
 
+    <!-- FOOTER -->
     <?php
     include "partial/footer.php"
     ?>
+    <!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
 		<script src="js/jquery.min.js"></script>
