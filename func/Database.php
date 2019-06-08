@@ -1,28 +1,41 @@
 <?php
-$__DB_HOST = 'localhost';
-$__DB_USER = 'pucom';
-$__DB_PASSWORD = 'puadmin';
-$__DB_DATABASE = 'pucom';
+
+function connDB()
+{
+    $HOST = 'localhost';
+    $USER = 'pucom';
+    $PASSWORD = 'puadmin';
+    $DATABASE = 'pucom';
+    return mysqli_connect($HOST, $USER, $PASSWORD, $DATABASE);
+}
 
 function getMemberInfo()
 {
-    global $__DB_HOST, $__DB_USER, $__DB_PASSWORD, $__DB_DATABASE;
-    $db = mysqli_connect($__DB_HOST, $__DB_USER, $__DB_PASSWORD, $__DB_DATABASE);
-    if (!isset($_SESSION['id']))
+    $db = connDB();
+    if (!isset($_SESSION['username']))
         return null;
-    $info = mysqli_query($db, "SELECT * FROM member WHERE username='{$_SESSION['id']}'");
+    $info = mysqli_query($db, "SELECT * FROM member WHERE username='{$_SESSION['username']}'");
     $info = mysqli_fetch_array($info);
     mysqli_close($db);
     return $info;
 }
 
+function getBoardList()
+{
+    $db = connDB();
+    $list = mysqli_query($db, "SELECT num, title, member, wrt_date, hits FROM post ORDER BY wrt_date DESC");
+    if ($list)
+        $list = mysqli_fetch_all($list, MYSQLI_ASSOC);
+    mysqli_close($db);
+    return $list;
+}
+
 function login($username, $password)
 {
-    global $__DB_HOST, $__DB_USER, $__DB_PASSWORD, $__DB_DATABASE;
-    $db = mysqli_connect($__DB_HOST, $__DB_USER, $__DB_PASSWORD, $__DB_DATABASE);
+    $db = connDB();
     $username = mysqli_real_escape_string($db, $username);
     $password = mysqli_real_escape_string($db, $password);
-    $member = mysqli_query($db, "SELECT username, password FROM member WHERE username='$username'");
+    $member = mysqli_query($db, "SELECT password FROM member WHERE username='$username'");
     if (count($member) != 1)
         return false;
     $member = mysqli_fetch_assoc($member);
@@ -32,8 +45,7 @@ function login($username, $password)
 
 function register($info)
 {
-    global $__DB_HOST, $__DB_USER, $__DB_PASSWORD, $__DB_DATABASE;
-    $db = mysqli_connect($__DB_HOST, $__DB_USER, $__DB_PASSWORD, $__DB_DATABASE);
+    $db = connDB();
     $attr = "";
     $values = "";
     if (isset($info['username'])) {
@@ -73,10 +85,10 @@ function register($info)
     if (isset($info['address'])) {
         $attr .= ", address";
         $values .= ", '" . mysqli_real_escape_string($db, $info['address']);
-        if(isset($info['detailAddress'])) {
-            $values.=" ".mysqli_real_escape_string($db, $info['detailAddress']);
+        if (isset($info['detailAddress'])) {
+            $values .= " " . mysqli_real_escape_string($db, $info['detailAddress']);
         }
-        $values.="'";
+        $values .= "'";
     }
 
     $sql = "INSERT INTO member($attr) VALUES ($values);";
