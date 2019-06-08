@@ -1,11 +1,11 @@
 <?php
 session_start();
-include "func/Database.php";
-$member = getMemberInfo();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <?php
+include "func/Database.php";
+$member = getMemberInfo();
 include "partial/head.php"
 ?>
 <body>

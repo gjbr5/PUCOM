@@ -1,7 +1,11 @@
 <?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="ko">
+<?php
 include "partial/head.php"
 ?>
-
 	<body>
     <!-- HEADER -->
         <!-- NAVIGATION -->
