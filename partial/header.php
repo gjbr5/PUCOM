@@ -133,12 +133,12 @@
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
                 <li <?php if(!isset($_GET['c'])) echo "class=active"; ?>><a href="index.php">Home</a></li>
-                <li <?php if($_GET['c']=='hotdeals') echo "class=active"; ?>><a href="store.php?c=hotdeals">Hot deals</a></li>
-                <li <?php if($_GET['c']=='desktops') echo "class=active"; ?>><a href="store.php?c=desktops">Desktops</a></li>
-                <li <?php if($_GET['c']=='labtops') echo "class=active"; ?>><a href="store.php?c=labtops">Labtops</a></li>
-                <li <?php if($_GET['c']=='mice') echo "class=active"; ?>><a href="store.php?c=mice">Mice</a></li>
-                <li <?php if($_GET['c']=='keyboards') echo "class=active"; ?>><a href="store.php?c=keyboards">Keyboards</a></li>
-                <li <?php if($_GET['c']=='accessories') echo "class=active"; ?>><a href="store.php?c=accessories">Accessories</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']=='hotdeals') echo "class=active"; ?>><a href="store.php?c=hotdeals">Hot deals</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']=='desktops') echo "class=active"; ?>><a href="store.php?c=desktops">Desktops</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']=='labtops') echo "class=active"; ?>><a href="store.php?c=labtops">Labtops</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']=='mice') echo "class=active"; ?>><a href="store.php?c=mice">Mice</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']=='keyboards') echo "class=active"; ?>><a href="store.php?c=keyboards">Keyboards</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']=='accessories') echo "class=active"; ?>><a href="store.php?c=accessories">Accessories</a></li>
             </ul>
             <!-- /NAV -->
         </div>

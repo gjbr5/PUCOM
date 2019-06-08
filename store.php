@@ -68,7 +68,7 @@ include "partial/head.php"
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
 									<div class="product-img">
-                                        <a <?php echo "href=\"product.php?c={$_GET['c']}\";" ?>><img src="./img/product01.png" alt="" ></a>
+                                        <a href="<?php echo "product.php?c={$_GET['c']}"; ?>"><img src="./img/product01.png" alt="" ></a>
 										<div class="product-label">
 											<span class="sale">-30%</span>
 											<span class="new">NEW</span>
@@ -95,8 +95,8 @@ include "partial/head.php"
                         <?php
                         $item_per_page=9;   //한 페이지에 표시할 아이템 수
 
-                        if(isset($_GET[p])){
-                            $current_page=$_GET[p];
+                        if(isset($_GET['p'])){
+                            $current_page=$_GET['p'];
                         }
                         else{
                             $current_page=0;
