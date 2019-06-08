@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
+session_start();
 include "partial/head.php"
 ?>
 	<body>
