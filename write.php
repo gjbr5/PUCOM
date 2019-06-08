@@ -1,5 +1,7 @@
 <?php
-include "func/Database.php";
+session_start();
+if(!isset($_SESSION['username']))
+    echo "<script>alert('권한이 없습니다.');location.replace('index.php');</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -216,42 +218,13 @@ include "func/Database.php";
     <div class="container">
         <!-- row -->
         <div class="row">
+            <form method="post">
 
-            <div class="table-container">
+                <input type="text" name="member" value="abc" readonly/>
+                <input type="text" name="title" placeholder="Title" required/>
 
-                <div class="table">
-                    <div class="table-header">
-                        <div class="header__item">
-                            <a id="num" class="filter__link" href="#">NUM</a>
-                        </div>
-                        <div class="header__item">
-                            <a id="title" class="filter__link" href="#">TITLE</a>
-                        </div>
-                        <div class="header__item">
-                            <a id="date" class="filter__link" href="#">DATE</a>
-                        </div>
-                        <div class="header__item">
-                            <a id="hits" class="filter__link filter__link--number" href="#">HITS</a>
-                        </div>
-                    </div>
-                    <div class="table-content">
-                        <?php
-                        $row = getBoardList();
-                        if ($row) {
-                            foreach ($row as $item) {
-                                echo "<div class=\"table-row\">";
-                                echo "<div class=\"table-data\">{$item['num']}</div>";
-                                echo "<div class=\"table-data\">{$item['title']}</div>";
-                                echo "<div class=\"table-data\">{$item['date']}</div>";
-                                echo "<div class=\"table-data\">{$item['hits']}</div>";
-                                echo "</div>";
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <a href="#"><button>작성하기</button></a>
+                <input type="submit"/>
+            </form>
         </div>
         <!-- /row -->
     </div>
@@ -367,74 +340,6 @@ include "func/Database.php";
 <script src="js/nouislider.min.js"></script>
 <script src="js/jquery.zoom.min.js"></script>
 <script src="js/main.js"></script>
-<script>
-    var properties = [
-        'num',
-        'title',
-        'date',
-        'hits'
-    ];
 
-    $.each(properties, function (i, val) {
-
-        var orderClass = '';
-
-        $("#" + val).click(function (e) {
-            e.preventDefault();
-            $('.filter__link.filter__link--active').not(this).removeClass('filter__link--active');
-            $(this).toggleClass('filter__link--active');
-            $('.filter__link').removeClass('asc desc');
-
-            if (orderClass == 'desc' || orderClass == '') {
-                $(this).addClass('asc');
-                orderClass = 'asc';
-            } else {
-                $(this).addClass('desc');
-                orderClass = 'desc';
-            }
-
-            var parent = $(this).closest('.header__item');
-            var index = $(".header__item").index(parent);
-            var $table = $('.table-content');
-            var rows = $table.find('.table-row').get();
-            var isSelected = $(this).hasClass('filter__link--active');
-            var isNumber = $(this).hasClass('filter__link--number');
-
-            rows.sort(function (a, b) {
-
-                var x = $(a).find('.table-data').eq(index).text();
-                var y = $(b).find('.table-data').eq(index).text();
-
-                if (isNumber == true) {
-
-                    if (isSelected) {
-                        return x - y;
-                    } else {
-                        return y - x;
-                    }
-
-                } else {
-
-                    if (isSelected) {
-                        if (x < y) return -1;
-                        if (x > y) return 1;
-                        return 0;
-                    } else {
-                        if (x > y) return -1;
-                        if (x < y) return 1;
-                        return 0;
-                    }
-                }
-            });
-
-            $.each(rows, function (index, row) {
-                $table.append(row);
-            });
-
-            return false;
-        });
-
-    });
-</script>
 </body>
 </html>

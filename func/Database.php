@@ -23,7 +23,7 @@ function getMemberInfo()
 function getBoardList()
 {
     $db = connDB();
-    $list = mysqli_query($db, "SELECT num, title, member, wrt_date, hits FROM post ORDER BY wrt_date DESC");
+    $list = mysqli_query($db, "SELECT post_num as num, title, member, wrt_date as date, hits FROM post ORDER BY date DESC");
     if ($list)
         $list = mysqli_fetch_all($list, MYSQLI_ASSOC);
     mysqli_close($db);
@@ -78,7 +78,7 @@ function register($info)
         $attr .= ", phone";
         $values .= ", '" . mysqli_real_escape_string($db, $info['phone']) . "'";
     }
-    if (isset($info['postcode'])) {
+    if (trim($info['postcode'])!='') {
         $attr .= ", postcode";
         $values .= ", " . mysqli_real_escape_string($db, $info['postcode']);
     }

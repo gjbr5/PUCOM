@@ -41,13 +41,13 @@
     display: flex;
     width: 100%;
     background: #000;
-    padding:var(--def-spacing-unit) 0;
+    padding: var(--def-spacing-unit) 0;
 }
 
 .table-row {
     display: flex;
     width: 100%;
-    padding:var(--def-spacing-unit) 0;
+    padding: var(--def-spacing-unit) 0;
 }
 
 .table-row:nth-of-type(odd) {
@@ -70,4 +70,8 @@
     display: inline-block;
     padding-left: var(--base-spacing-unit);
     padding-right: var(--base-spacing-unit);
+}
+
+.filter__link:focus {
+    color: white;
 }

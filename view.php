@@ -216,42 +216,9 @@ include "func/Database.php";
     <div class="container">
         <!-- row -->
         <div class="row">
+            <table>
 
-            <div class="table-container">
-
-                <div class="table">
-                    <div class="table-header">
-                        <div class="header__item">
-                            <a id="name" class="filter__link" href="#">NUM</a>
-                        </div>
-                        <div class="header__item">
-                            <a id="wins" class="filter__link filter__link--number" href="#">TITLE</a>
-                        </div>
-                        <div class="header__item">
-                            <a id="draws" class="filter__link filter__link--number" href="#">DATE</a>
-                        </div>
-                        <div class="header__item">
-                            <a id="losses" class="filter__link filter__link--number" href="#">HITS</a>
-                        </div>
-                    </div>
-                    <div class="table-content">
-                        <?php
-                        $row = getBoardList();
-                        if ($row) {
-                            foreach ($row as $item) {
-                                echo "<div class=\"table-row\">";
-                                echo "<div class=\"table-data\">{$item['num']}</div>";
-                                echo "<div class=\"table-data\">{$item['title']}</div>";
-                                echo "<div class=\"table-data\">{$item['date']}</div>";
-                                echo "<div class=\"table-data\">{$item['hits']}</div>";
-                                echo "</div>";
-                            }
-                        }
-                        ?>
-
-                    </div>
-                </div>
-            </div>
+            </table>
         </div>
         <!-- /row -->
     </div>

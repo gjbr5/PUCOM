@@ -40,7 +40,7 @@ CREATE TABLE reply
     post_num  INT(11) NOT NULL,
     comm_date DATE DEFAULT NOW(),
     content   TEXT,
-    FOREIGN KEY (post_num) REFERENCES post (post_num),
+    FOREIGN KEY (post_num) REFERENCES post (post_num)
 );
 
 /*
