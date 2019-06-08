@@ -39,7 +39,7 @@ include "../func/Database.php";
 <body>
 
 <!-- Title -->
-<h1 class="header-w3ls"><img src="../img/pucom.png" style="max-width: 20%;"/> <?php echo $lang['register']; ?></h1>
+<h1 class="header-w3ls"><img src="../img/logo.png" style="max-width: 20%;"/> <?php echo $lang['register']; ?></h1>
 
 <!-- Form -->
 <div class="signup-w3ls">

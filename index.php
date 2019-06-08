@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko">
 <?php
 include "partial/head.php"
 ?>
+
 	<body>
     <!-- HEADER -->
         <!-- NAVIGATION -->
@@ -117,7 +116,7 @@ include "partial/head.php"
                                                 <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             </div>
                                             <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>add to cart</button>
                                             </div>
                                         </div>
                                         <!-- /product -->

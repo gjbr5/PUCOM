@@ -29,7 +29,7 @@ CREATE TABLE post
     title    VARCHAR(50) NOT NULL,
     content  TEXT,
     member   VARCHAR(11) NOT NULL,
-    wrt_date DATETIME DEFAULT NOW(),
+    wrt_date DATETIME DEFUALT NOW(),
     hits     INT(11),
     FOREIGN KEY (member) REFERENCES member (username)
 );
@@ -38,7 +38,7 @@ CREATE TABLE reply
 (
     repl_num  INT(11) PRIMARY KEY AUTO_INCREMENT,
     post_num  INT(11) NOT NULL,
-    comm_date DATE DEFAULT NOW(),
+    comm_date DATE DEFUALT NOW(),
     content   TEXT,
     FOREIGN KEY (post_num) REFERENCES post (post_num)
 );

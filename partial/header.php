@@ -1,3 +1,4 @@
+
 <!-- HEADER -->
 <header>
     <!-- MAIN HEADER -->
@@ -9,7 +10,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="#" class="logo">
+                        <a href="index.php" class="logo">
                             <img src="./img/logo.png" alt="">
                         </a>
                     </div>
@@ -39,19 +40,33 @@
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
                         <!-- Login -->
-                        <div>
-                            <a href="./auth/login.php">
-                                <i class="fa fa-user-o"></i>
-                                <span>Login</span>
-                            </a>
-                        </div>
+                        <?php
+                        if(!isset($_SESSION['username'])){
+                            echo "<div>";
+                            echo "<a href=\"auth/login.php\"><i class=\"fa fa-user-o\"></i>";
+                            echo "<span>Login</span>";
+                            echo "</a>";
+                            echo "</div>";
+                        }else{
+                            echo "<div>";
+                            echo "<a href=\"func/auth.php\"><i class=\"fa fa-user\"></i>";
+                            echo "<span>LogOut</span>";
+                            echo "</a>";
+                            echo "</div>";
+                            echo "<div>";
+                            echo "<a href=\"account.php\"><i class=\"fa fa-user-circle\"></i>";
+                            echo "<span>Account</span>";
+                            echo "</a>";
+                            echo "</div>";
+                        }
+                        ?>
                         <!-- Login -->
 
                         <!-- Cart -->
                         <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Your Cart</span>
+                                <span>Cart</span>
                                 <div class="qty">2</div>
                             </a>
                             <div class="cart-dropdown">
@@ -83,8 +98,7 @@
                                     <h5>SUBTOTAL: $2940.00</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="#">View Cart</a>
-                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
