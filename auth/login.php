@@ -70,12 +70,12 @@ include "../func/Language.php";
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/member/login.js"></script>
 <?php
-if (isset($_POST['username']) && isset($_POST['password'])
-    && login($_POST['username'], $_POST['password'])) {
-    $_SESSION['username'] = $_POST['username'];
-    echo "<script>location.replace('../');</script>";
-} else
-    echo "<script>alert('Login Failed');</script>";
+if (isset($_POST['username']) && isset($_POST['password']))
+    if (login($_POST['username'], $_POST['password'])) {
+        $_SESSION['username'] = $_POST['username'];
+        echo "<script>location.replace('../');</script>";
+    } else
+        echo "<script>alert('Login Failed');</script>";
 ?>
 
 </body>
