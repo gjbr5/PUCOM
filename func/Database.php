@@ -56,8 +56,8 @@ function register($info)
 
     if (isset($info['password'])) {
         $attr .= ", password";
-        $password = mysqli_real_escape_string($db, $info['password']);
-        $password = password_hash($password, PASSWORD_BCRYPT);
+        $password = password_hash($info['password'], PASSWORD_BCRYPT);
+        $password = mysqli_real_escape_string($db, $password);
         $values .= ", '" . $password . "'";
     } else
         return false;

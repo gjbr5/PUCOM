@@ -22,9 +22,9 @@ include "../func/Language.php";
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" method="post">
+            <form class="login100-form validate-form" method="post" action="../func/auth.php">
 					<span class="login100-form-title p-b-26">
-						<a href="../"><img src="../img/logo.png"/></a>
+						<a href="../"><img style="width: 280px" src="../img/logo.png"/></a>
 					</span>
                 <span class="login100-form-title p-b-48">
 						<?php echo $lang['login']; ?>
@@ -69,14 +69,7 @@ include "../func/Language.php";
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/member/login.js"></script>
-<?php
-if (isset($_POST['username']) && isset($_POST['password']))
-    if (login($_POST['username'], $_POST['password'])) {
-        $_SESSION['username'] = $_POST['username'];
-        echo "<script>location.replace('../');</script>";
-    } else
-        echo "<script>alert('Login Failed');</script>";
-?>
+
 
 </body>
 </html>
