@@ -19,16 +19,16 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
-                            <select class="input-select">
+                        <form method="get" action="store.php">
+                            <select class="input-select" name="c">
                                 <option value="0">All</option>
-                                <option value="1">Desktops</option>
-                                <option value="2">Laptops</option>
-                                <option value="3">Mice</option>
-                                <option value="4">Keyboards</option>
-                                <option value="5">Accessories</option>
+                                <option value="100">Desktops</option>
+                                <option value="200">Laptops</option>
+                                <option value="300">Mice</option>
+                                <option value="400">Keyboards</option>
+                                <option value="500">Accessories</option>
                             </select>
-                            <input class="input" placeholder="here">
+                            <input class="input" name="name" placeholder="Input Keyword">
                             <button class="search-btn">Search</button>
                         </form>
                     </div>
@@ -132,12 +132,12 @@
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
                 <li <?php if(!isset($_GET['c'])) echo "class=active"; ?>><a href="index.php">Home</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']=='hotdeals') echo "class=active"; ?>><a href="store.php?c=hotdeals">Hot deals</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']=='desktops') echo "class=active"; ?>><a href="store.php?c=desktops">Desktops</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']=='labtops') echo "class=active"; ?>><a href="store.php?c=labtops">Labtops</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']=='mice') echo "class=active"; ?>><a href="store.php?c=mice">Mice</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']=='keyboards') echo "class=active"; ?>><a href="store.php?c=keyboards">Keyboards</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']=='accessories') echo "class=active"; ?>><a href="store.php?c=accessories">Accessories</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']==10) echo "class=active"; ?>><a href="store.php?c=10">Hot deals</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']==100) echo "class=active"; ?>><a href="store.php?c=100">Desktops</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']==200) echo "class=active"; ?>><a href="store.php?c=200">Labtops</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']==300) echo "class=active"; ?>><a href="store.php?c=300">Mice</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']==400) echo "class=active"; ?>><a href="store.php?c=400">Keyboards</a></li>
+                <li <?php if(isset($_GET['c']) && $_GET['c']==500) echo "class=active"; ?>><a href="store.php?c=500">Accessories</a></li>
             </ul>
             <!-- /NAV -->
         </div>

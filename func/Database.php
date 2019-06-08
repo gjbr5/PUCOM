@@ -20,6 +20,46 @@ function getMemberInfo()
     return $info;
 }
 
+function getProduct($sql)
+{
+    $db = connDB();
+    $products = mysqli_query($db, $sql);
+    $products = mysqli_fetch_all($products, MYSQLI_BOTH);
+    mysqli_close($db);
+    return $products;
+}
+
+function getColor($pid) {
+    switch(substr($pid, strlen($pid)-2, 2)) {
+        case '00':
+            return 'Black';
+        case '11':
+            return 'White';
+        case '22':
+            return 'Red';
+        case '33':
+            return 'Blue';
+        case '44':
+            return 'Green';
+        case '55':
+            return 'Gray';
+    }
+}
+function getCategory($category) {
+    switch($category) {
+        case '100':
+            return 'Desktops';
+        case '200':
+            return 'Laptops';
+        case '300':
+            return 'Mice';
+        case '400':
+            return 'Keyboards';
+        case '500':
+            return 'Accessories';
+    }
+}
+
 function getBoardList()
 {
     $db = connDB();
@@ -36,7 +76,7 @@ function login($username, $password)
     $username = mysqli_real_escape_string($db, $username);
     $password = mysqli_real_escape_string($db, $password);
     $member = mysqli_query($db, "SELECT password FROM member WHERE username='$username'");
-    if (count($member) != 1)
+    if (!$member)
         return false;
     $member = mysqli_fetch_assoc($member);
     mysqli_close($db);
@@ -78,7 +118,7 @@ function register($info)
         $attr .= ", phone";
         $values .= ", '" . mysqli_real_escape_string($db, $info['phone']) . "'";
     }
-    if (trim($info['postcode'])!='') {
+    if (trim($info['postcode']) != '') {
         $attr .= ", postcode";
         $values .= ", " . mysqli_real_escape_string($db, $info['postcode']);
     }

@@ -54,14 +54,15 @@ include "../func/Database.php";
         <!-- Password -->
         <div class="form-control">
             <label class="header"><?php echo $lang['password']; ?>* :</label>
-            <input type="password" class="lock" name="password" placeholder="<?php echo $lang['password']; ?>"
+            <input type="password" class="lock" name="password" placeholder="비밀번호를 6자 이상 입력하세요."
                    id="password1"
                    title="<?php echo $lang['enterpassword']; ?>" required/>
+
         </div>
         <div class="form-control">
             <label class="header"><?php echo $lang['passwordconfirm']; ?>* :</label>
             <input type="password" class="lock" name="confirm-password"
-                   placeholder="<?php echo $lang['passwordconfirm']; ?>"
+                   placeholder="비밀번호를 한 번 더 입력하세요."
                    id="password2"
                    title="<?php echo $lang['passwordconfirmtitle']; ?>" required/>
         </div>
@@ -119,6 +120,12 @@ include "../func/Database.php";
     function validatePassword() {
         var pass1 = document.getElementById("password1").value;
         var pass2 = document.getElementById("password2").value;
+
+        if (pass1.length < 6)
+            document.getElementById("password1").setCustomValidity("Password is too short.");
+        else
+            document.getElementById("password1").setCustomValidity('');
+
         if (pass1 !== pass2)
             document.getElementById("password2").setCustomValidity("<?php echo $lang['passval'];?>");
         else

@@ -99,7 +99,7 @@ include "partial/header.php"
                         <!-- /tab -->
 
                         <!-- Order notes -->
-                        <div class="order-notes">
+                        <div class="order-notes" style="margin-right:15px;">
                             <textarea class="input" placeholder="Order Notes"></textarea>
                         </div>
                         <!-- /Order notes -->
