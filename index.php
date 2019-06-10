@@ -96,7 +96,7 @@ include "partial/header.php"
                                                 } ?>
 
                                                 <div class="product-btns">
-                                                    <button class="quick-view"><i class="fa fa-eye"></i></a>
+                                                    <button id="quick-view" class="quick-view"><i class="fa fa-eye"></i></a>
                                                         <span class="tooltipp">quick view</span>
                                                     </button>
                                                 </div>
@@ -235,7 +235,7 @@ include "partial/header.php"
                                                 ?>
 
                                                 <div class="product-btns">
-                                                    <button class="quick-view"><i class="fa fa-eye"></i><span
+                                                    <button id="quick-view" class="quick-view"><i class="fa fa-eye"></i><span
                                                                 class="tooltipp">quick view</span>
                                                     </button>
                                                 </div>
@@ -272,6 +272,10 @@ include "partial/header.php"
 </div>
 <!-- /SECTION -->
 
+<div id="quick-view-popup" style="display: none; background-color: white; width: 500px; height: 300px;">
+    <p> GREAT </p>
+</div>
+
 <!-- FOOTER -->
 <?php
 include "partial/footer.php"
@@ -285,5 +289,19 @@ include "partial/footer.php"
 <script src="js/nouislider.min.js"></script>
 <script src="js/jquery.zoom.min.js"></script>
 <script src="js/main.js"></script>
+<script src='js/jquery.bpopup.min.js'></script>
+<script type="text/javascript">
+    var BPOPUP='';
+    (function($) {
+        $(function() {
+            $('#quick-view').bind('click', function(e) {
+                e.preventDefault();
+                BPOPUP =  $('#quick-view-popup').bPopup({
+                    modalClose : true
+                });
+            });
+        });
+    })(jQuery);
+</script>
 </body>
 </html>
