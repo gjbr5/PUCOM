@@ -162,12 +162,22 @@ include "partial/footer.php"
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
+<?php
+include "partial/js_plugin.php"
+?>
+<script type="text/javascript">
+    var BPOPUP='';
+    (function($) {
+        $(function() {
+            $('.quick-view').bind('click', function(e) {
+                e.preventDefault();
+                BPOPUP =  $('#quick-view-popup').bPopup({
+                    modalClose : true
+                });
+            });
+        });
+    })(jQuery);
+</script>
 
 </body>
 </html>

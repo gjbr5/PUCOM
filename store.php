@@ -274,6 +274,20 @@ include "partial/footer.php"
 <script src="js/slick.min.js"></script>
 <script src="js/nouislider.min.js"></script>
 <script src="js/jquery.zoom.min.js"></script>
+<script src="js/jquery.bpopup.min.js"></script>
+<script type="text/javascript">
+    var BPOPUP='';
+    (function($) {
+        $(function() {
+            $('.quick-view').bind('click', function(e) {
+                e.preventDefault();
+                BPOPUP =  $('#quick-view-popup').bPopup({
+                    modalClose : true
+                });
+            });
+        });
+    })(jQuery);
+</script>
 <script>
     (function ($, min, max) {
         "use strict";

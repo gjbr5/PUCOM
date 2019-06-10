@@ -71,13 +71,12 @@ include "partial/header.php"
                 <div class="row">
                     <div class="products-tabs">
                         <?php
-                        $category_num = [100, 200, 300, 400, 500];
-                        $category = ['Desktops', 'Laptops', 'Mice', 'Keyboards', 'Accessories'];
+                        $category = [100, 200, 300, 400, 500];
                         for ($i = 0; $i < 5; $i++) {
-                            $product = getProduct("SELECT * FROM product WHERE category=$category_num[$i] ORDER BY upload_date DESC LIMIT 5");
+                            $product = getProduct("SELECT * FROM product WHERE category=$category[$i] ORDER BY upload_date DESC LIMIT 5");
                             ?>
                             <!-- tab -->
-                            <div id="<?php echo "New_" . $category[$i]; ?>" class="tab-pane active">
+                            <div id="<?php echo "New_" . getCategory($category[$i]); ?>" class="tab-pane active">
                                 <div class="products-slick" data-nav="#slick-nav-1">
                                     <!-- product -->
                                     <?php
@@ -97,15 +96,14 @@ include "partial/header.php"
                                                 <span class=\"new\">NEW</span>
                                             </div>";
                                                 } ?>
-
                                                 <div class="product-btns">
-                                                    <button id="quick-view" class="quick-view"><i class="fa fa-eye"></i></a>
+                                                    <button class="quick-view"><i class="fa fa-eye"></i></a>
                                                         <span class="tooltipp">quick view</span>
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category"><?php echo $category[$i]; ?></p>
+                                                <p class="product-category"><?php echo getCategory($category[$i]); ?></p>
                                                 <h3 class="product-name"><a><?php echo $item['name']; ?></a>
                                                 </h3>
                                                 <h4 class="product-price">$<?php
@@ -216,13 +214,12 @@ include "partial/header.php"
                 <div class="row">
                     <div class="products-tabs">
                         <?php
-                        $category_num = [100, 200, 300, 400, 500];
-                        $category = ['Desktops', 'Laptops', 'Mice', 'Keyboards', 'Accessories'];
+                        $category = [100, 200, 300, 400, 500];
                         for ($i = 0; $i < 5; $i++) {
-                            $product = getProduct("SELECT product.*, if(upload_date>now()-interval 1 month, 'y', 'n') as new FROM product WHERE category=$category_num[$i] ORDER BY upload_date DESC LIMIT 5");
+                            $product = getProduct("SELECT product.*, if(upload_date>now()-interval 1 month, 'y', 'n') as new FROM product WHERE category=$category[$i] ORDER BY upload_date DESC LIMIT 5");
                             ?>
                             <!-- tab -->
-                            <div id="<?php echo "Hot_" . $category[$i]; ?>" class="tab-pane active">
+                            <div id="<?php echo "Hot_" . getCategory($category[$i]); ?>" class="tab-pane active">
                                 <div class="products-slick" data-nav="#slick-nav-2">
                                     <!-- product -->
                                     <?php
@@ -239,15 +236,14 @@ include "partial/header.php"
                                                 if ($item['new'] == 'y') echo "<span class=\"new\">NEW</span>";
                                                 echo "</div>";
                                                 ?>
-
                                                 <div class="product-btns">
-                                                    <button id="quick-view" class="quick-view"><i class="fa fa-eye"></i><span
+                                                    <button class="quick-view"><i class="fa fa-eye"></i><span
                                                                 class="tooltipp">quick view</span>
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category"><?php echo $category[$i]; ?></p>
+                                                <p class="product-category"><?php echo getCategory($category[$i]); ?></p>
                                                 <h3 class="product-name"><a><?php echo $item['name']; ?></a>
                                                 </h3>
                                                 <h4 class="product-price">$<?php
@@ -291,18 +287,14 @@ include "partial/footer.php"
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
-<script src='js/jquery.bpopup.min.js'></script>
+<?php
+include "partial/js_plugin.php"
+?>
 <script type="text/javascript">
     var BPOPUP='';
     (function($) {
         $(function() {
-            $('#quick-view').bind('click', function(e) {
+            $('.quick-view').bind('click', function(e) {
                 e.preventDefault();
                 BPOPUP =  $('#quick-view-popup').bPopup({
                     modalClose : true
@@ -311,5 +303,6 @@ include "partial/footer.php"
         });
     })(jQuery);
 </script>
+
 </body>
 </html>
