@@ -85,7 +85,10 @@ include "partial/header.php"
 
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href = "product.php?c=<?php echo $item['category']."&pid=".$item['product_id']; ?>"><img src="<?php echo $item['img_url']; ?>" alt=""></a>
+                                                <a href="product.php?c=<?php echo $item['category'] . "&pid=" . $item['product_id']; ?>">
+                                                    <img src="<?php echo $item['img_url']; ?>"
+                                                         alt="<?php echo $item['name']; ?>">
+                                                </a>
                                                 <?php
                                                 if ($item['sales'] != 0) {
                                                     echo "
@@ -115,7 +118,9 @@ include "partial/header.php"
                                                 </h4>
                                             </div>
                                             <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
+                                                    to cart
+                                                </button>
                                             </div>
                                         </div>
                                     <?php } ?>
@@ -225,7 +230,8 @@ include "partial/header.php"
 
                                         <div class="product">
                                             <div class="product-img">
-                                                <a href = "product.php?c=<?php echo $item['category']."&pid=".$item['product_id']; ?>"><img src="<?php echo $item['img_url']; ?>" alt=""></a>
+                                                <a href="product.php?c=<?php echo $item['category'] . "&pid=" . $item['product_id']; ?>"><img
+                                                            src="<?php echo $item['img_url']; ?>" alt=""></a>
                                                 <?php
                                                 echo "
                                                 <div class=\"product-label\">
@@ -251,7 +257,9 @@ include "partial/header.php"
                                                 </h4>
                                             </div>
                                             <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart </button>
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
+                                                    to cart
+                                                </button>
                                             </div>
                                         </div>
                                     <?php } ?>

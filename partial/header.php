@@ -1,3 +1,13 @@
+<?php
+$depth = 0;
+$url = $_SERVER['PHP_SELF'];
+while (strrpos($url, '/') > 0) {
+    $url = substr($url, 0, strrpos($url, '/'));
+    $depth++;
+}
+$root = str_repeat("../", $depth);
+
+?>
 <!-- HEADER -->
 <header>
     <!-- MAIN HEADER -->
@@ -9,8 +19,8 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="index.php" class="logo">
-                            <img src="./img/logo.png" alt="">
+                        <a href="<?php echo $root; ?>index.php" class="logo">
+                            <img src="<?php echo $root; ?>img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -19,7 +29,7 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form method="get" action="store.php">
+                        <form method="get" action="<?php echo $root; ?>store.php">
                             <select class="input-select" name="c">
                                 <option value="0">All</option>
                                 <option value="100">Desktops</option>
@@ -40,20 +50,20 @@
                     <div class="header-ctn">
                         <!-- Login -->
                         <?php
-                        if(!isset($_SESSION['username'])){
+                        if (!isset($_SESSION['username'])) {
                             echo "<div>";
-                            echo "<a href=\"auth/login.php\"><i class=\"fa fa-user-o\"></i>";
+                            echo "<a href=\"".$root."auth/login.php\"><i class=\"fa fa-user-o\"></i>";
                             echo "<span>Login</span>";
                             echo "</a>";
                             echo "</div>";
-                        }else{
+                        } else {
                             echo "<div>";
-                            echo "<a href=\"func/auth.php\"><i class=\"fa fa-user\"></i>";
+                            echo "<a href=\"".$root."func/auth.php\"><i class=\"fa fa-user\"></i>";
                             echo "<span>LogOut</span>";
                             echo "</a>";
                             echo "</div>";
                             echo "<div>";
-                            echo "<a href=\"account.php\"><i class=\"fa fa-user-circle\"></i>";
+                            echo "<a href=\"".$root."account.php\"><i class=\"fa fa-user-circle\"></i>";
                             echo "<span>Account</span>";
                             echo "</a>";
                             echo "</div>";
@@ -72,7 +82,7 @@
                                 <div class="cart-list">
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
+                                            <img src="<?php echo $root; ?>img/product01.png" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -83,7 +93,7 @@
 
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
+                                            <img src="<?php echo $root; ?>img/product02.png" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -97,7 +107,7 @@
                                     <h5>SUBTOTAL: $2940.00</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="<?php echo $root; ?>checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -131,13 +141,19 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li <?php if(!isset($_GET['c'])) echo "class=active"; ?>><a href="index.php">Home</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']==10) echo "class=active"; ?>><a href="store.php?c=10">Hot deals</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']==100) echo "class=active"; ?>><a href="store.php?c=100">Desktops</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']==200) echo "class=active"; ?>><a href="store.php?c=200">Labtops</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']==300) echo "class=active"; ?>><a href="store.php?c=300">Mice</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']==400) echo "class=active"; ?>><a href="store.php?c=400">Keyboards</a></li>
-                <li <?php if(isset($_GET['c']) && $_GET['c']==500) echo "class=active"; ?>><a href="store.php?c=500">Accessories</a></li>
+                <li <?php if (!isset($_GET['c'])) echo "class=active"; ?>><a href="<?php echo $root; ?>index.php">Home</a></li>
+                <li <?php if (isset($_GET['c']) && $_GET['c'] == 10) echo "class=active"; ?>><a href="<?php echo $root; ?>store.php?c=10">Hot
+                        deals</a></li>
+                <li <?php if (isset($_GET['c']) && $_GET['c'] == 100) echo "class=active"; ?>><a href="<?php echo $root; ?>store.php?c=100">Desktops</a>
+                </li>
+                <li <?php if (isset($_GET['c']) && $_GET['c'] == 200) echo "class=active"; ?>><a href="<?php echo $root; ?>store.php?c=200">Labtops</a>
+                </li>
+                <li <?php if (isset($_GET['c']) && $_GET['c'] == 300) echo "class=active"; ?>><a href="<?php echo $root; ?>store.php?c=300">Mice</a>
+                </li>
+                <li <?php if (isset($_GET['c']) && $_GET['c'] == 400) echo "class=active"; ?>><a href="<?php echo $root; ?>store.php?c=400">Keyboards</a>
+                </li>
+                <li <?php if (isset($_GET['c']) && $_GET['c'] == 500) echo "class=active"; ?>><a href="<?php echo $root; ?>store.php?c=500">Accessories</a>
+                </li>
             </ul>
             <!-- /NAV -->
         </div>

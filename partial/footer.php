@@ -1,3 +1,13 @@
+<?php
+$depth = 0;
+$url = $_SERVER['PHP_SELF'];
+while (strrpos($url, '/') > 0) {
+    $url = substr($url, 0, strrpos($url, '/'));
+    $depth++;
+}
+$root = str_repeat("../", $depth);
+
+?>
 <!-- FOOTER -->
 <footer id="footer">
     <!-- top footer -->
@@ -22,12 +32,12 @@
                     <div class="footer">
                         <h3 class="footer-title">Categories</h3>
                         <ul class="footer-links">
-                            <li><a href="<?php echo "store.php?c=hotdeals"; ?>">Hot deals</a></li>
-                            <li><a href="<?php echo "store.php?c=desktops"; ?>">Desktops</a></li>
-                            <li><a href="<?php echo "store.php?c=labtops"; ?>">Labtops</a></li>
-                            <li><a href="<?php echo "store.php?c=mice"; ?>">Mice</a></li>
-                            <li><a href="<?php echo "store.php?c=keyboards"; ?>">Keyboards</a></li>
-                            <li><a href="<?php echo "store.php?c=Accessories"; ?>">Accessories</a></li>
+                            <li><a href="<?php echo $root."store.php?c=hotdeals"; ?>">Hot deals</a></li>
+                            <li><a href="<?php echo $root."store.php?c=desktops"; ?>">Desktops</a></li>
+                            <li><a href="<?php echo $root."store.php?c=labtops"; ?>">Labtops</a></li>
+                            <li><a href="<?php echo $root."store.php?c=mice"; ?>">Mice</a></li>
+                            <li><a href="<?php echo $root."store.php?c=keyboards"; ?>">Keyboards</a></li>
+                            <li><a href="<?php echo $root."store.php?c=Accessories"; ?>">Accessories</a></li>
                         </ul>
                     </div>
                 </div>
@@ -39,7 +49,7 @@
                         <h3 class="footer-title">Information</h3>
                         <ul class="footer-links">
                             <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="<?php echo $root; ?>board/qna.php">Contact Us</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Orders and Returns</a></li>
                             <li><a href="#">Terms & Conditions</a></li>

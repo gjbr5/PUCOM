@@ -6,7 +6,7 @@ if (isset($_COOKIE['lang'])) {
     else if ($_COOKIE['lang'] == "ko")
         $lang = Language::getKoreanPack();
 } else
-    $lang = Language::getKoreanPack();
+    $lang = Language::getEnglishPack();
 
 class Language
 {

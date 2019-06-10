@@ -9,16 +9,7 @@ include "../func/Database.php";
     <title><?php echo $lang['registertitle']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <?php
-    if (register($_POST)) {
-        echo "
-        <script>
-            alert('Welcome!');
-            location.replace('../');
-        </script>
-        ";
-    }
-    ?>
+
     <script src='../js/jquery.min.js'></script>
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -44,6 +35,7 @@ include "../func/Database.php";
 <!-- Form -->
 <div class="signup-w3ls">
     <form action="register.php" method="post">
+        <input type="hidden" name="action" value="register"/>
         <!-- Username -->
         <div class="form-control">
             <label class="header"><?php echo $lang['username']; ?>* :</label>
@@ -54,7 +46,7 @@ include "../func/Database.php";
         <!-- Password -->
         <div class="form-control">
             <label class="header"><?php echo $lang['password']; ?>* :</label>
-            <input type="password" class="lock" name="password" placeholder="비밀번호를 6자 이상 입력하세요."
+            <input type="password" class="lock" name="password" placeholder="Input Password at least 6 Characters."
                    id="password1"
                    title="<?php echo $lang['enterpassword']; ?>" required/>
 
@@ -62,8 +54,7 @@ include "../func/Database.php";
         <div class="form-control">
             <label class="header"><?php echo $lang['passwordconfirm']; ?>* :</label>
             <input type="password" class="lock" name="confirm-password"
-                   placeholder="비밀번호를 한 번 더 입력하세요."
-                   id="password2"
+                   placeholder="Input Your Password Again." id="password2"
                    title="<?php echo $lang['passwordconfirmtitle']; ?>" required/>
         </div>
 

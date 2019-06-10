@@ -88,13 +88,13 @@ function register($info)
     $db = connDB();
     $attr = "";
     $values = "";
-    if (isset($info['username'])) {
+    if (isset($info['username']) && trim($info['username'])!='') {
         $attr .= "username";
         $values .= "'" . mysqli_real_escape_string($db, $info['username']) . "'";
     } else
         return false;
 
-    if (isset($info['password'])) {
+    if (isset($info['password']) && trim($info['password'])!='') {
         $attr .= ", password";
         $password = password_hash($info['password'], PASSWORD_BCRYPT);
         $password = mysqli_real_escape_string($db, $password);
@@ -102,36 +102,35 @@ function register($info)
     } else
         return false;
 
-    if (isset($info['name'])) {
+    if (isset($info['name']) && trim($info['name'])!='') {
         $attr .= ", name";
         $values .= ", '" . mysqli_real_escape_string($db, $info['name']) . "'";
     } else
         return false;
 
-    if (isset($info['email'])) {
+    if (isset($info['email']) && trim($info['email'])!='') {
         $attr .= ", email";
         $values .= ", '" . mysqli_real_escape_string($db, $info['email']) . "'";
     } else
         return false;
 
-    if (isset($info['phone'])) {
+    if (isset($info['phone']) && trim($info['phone'])!='') {
         $attr .= ", phone";
         $values .= ", '" . mysqli_real_escape_string($db, $info['phone']) . "'";
     }
-    if (trim($info['postcode']) != '') {
+    if (isset($info['postcode']) && trim($info['postcode']) != '') {
         $attr .= ", postcode";
         $values .= ", " . mysqli_real_escape_string($db, $info['postcode']);
     }
-    if (isset($info['address'])) {
+    if (isset($info['address']) && trim($info['address'])!='') {
         $attr .= ", address";
         $values .= ", '" . mysqli_real_escape_string($db, $info['address']);
-        if (isset($info['detailAddress'])) {
+        if (isset($info['detailAddress']) && trim($info['detailAddress'])!='') {
             $values .= " " . mysqli_real_escape_string($db, $info['detailAddress']);
         }
         $values .= "'";
     }
 
     $sql = "INSERT INTO member($attr) VALUES ($values);";
-    echo $sql;
     return mysqli_query($db, $sql);
 }

@@ -23,6 +23,7 @@ include "../func/Language.php";
     <div class="container-login100">
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="post" action="../func/auth.php">
+                <input type="hidden" name="action" value="login"/>
 					<span class="login100-form-title p-b-26">
 						<a href="../"><img style="width: 280px" src="../img/logo.png"/></a>
 					</span>

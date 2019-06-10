@@ -1,7 +1,5 @@
 <?php
-session_start();
-if(!isset($_SESSION['username']))
-    echo "<script>alert('권한이 없습니다.');location.replace('index.php');</script>";
+include "../func/Database.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,22 +15,22 @@ if(!isset($_SESSION['username']))
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/style.css"/>
 
-    <link type="text/css" rel="stylesheet" href="css/qna.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/qna.css"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -70,7 +68,7 @@ if(!isset($_SESSION['username']))
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                            <img src="./img/logo.png" alt="">
+                            <img src="../img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -116,7 +114,7 @@ if(!isset($_SESSION['username']))
                                 <div class="cart-list">
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
+                                            <img src="../img/product01.png" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -127,7 +125,7 @@ if(!isset($_SESSION['username']))
 
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
+                                            <img src="../img/product02.png" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -218,13 +216,9 @@ if(!isset($_SESSION['username']))
     <div class="container">
         <!-- row -->
         <div class="row">
-            <form method="post">
+            <table>
 
-                <input type="text" name="member" value="abc" readonly/>
-                <input type="text" name="title" placeholder="Title" required/>
-
-                <input type="submit"/>
-            </form>
+            </table>
         </div>
         <!-- /row -->
     </div>
@@ -334,12 +328,81 @@ if(!isset($_SESSION['username']))
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/slick.min.js"></script>
+<script src="../js/nouislider.min.js"></script>
+<script src="../js/jquery.zoom.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+    var properties = [
+        'name',
+        'wins',
+        'draws',
+        'losses',
+        'total',
+    ];
 
+    $.each(properties, function (i, val) {
+
+        var orderClass = '';
+
+        $("#" + val).click(function (e) {
+            e.preventDefault();
+            $('.filter__link.filter__link--active').not(this).removeClass('filter__link--active');
+            $(this).toggleClass('filter__link--active');
+            $('.filter__link').removeClass('asc desc');
+
+            if (orderClass == 'desc' || orderClass == '') {
+                $(this).addClass('asc');
+                orderClass = 'asc';
+            } else {
+                $(this).addClass('desc');
+                orderClass = 'desc';
+            }
+
+            var parent = $(this).closest('.header__item');
+            var index = $(".header__item").index(parent);
+            var $table = $('.table-content');
+            var rows = $table.find('.table-row').get();
+            var isSelected = $(this).hasClass('filter__link--active');
+            var isNumber = $(this).hasClass('filter__link--number');
+
+            rows.sort(function (a, b) {
+
+                var x = $(a).find('.table-data').eq(index).text();
+                var y = $(b).find('.table-data').eq(index).text();
+
+                if (isNumber == true) {
+
+                    if (isSelected) {
+                        return x - y;
+                    } else {
+                        return y - x;
+                    }
+
+                } else {
+
+                    if (isSelected) {
+                        if (x < y) return -1;
+                        if (x > y) return 1;
+                        return 0;
+                    } else {
+                        if (x > y) return -1;
+                        if (x < y) return 1;
+                        return 0;
+                    }
+                }
+            });
+
+            $.each(rows, function (index, row) {
+                $table.append(row);
+            });
+
+            return false;
+        });
+
+    });
+</script>
 </body>
 </html>
