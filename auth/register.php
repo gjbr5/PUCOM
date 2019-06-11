@@ -34,7 +34,7 @@ include "../func/Database.php";
 
 <!-- Form -->
 <div class="signup-w3ls">
-    <form action="register.php" method="post">
+    <form action="../func/auth.php" method="post">
         <input type="hidden" name="action" value="register"/>
         <!-- Username -->
         <div class="form-control">

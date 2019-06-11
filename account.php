@@ -41,13 +41,13 @@ include "partial/header.php"
         <div class="row">
 
             <!-- Account Details Tab -->
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <div class="section-title">
-                    <h3 class="title">Account Information</h3>
+                    <h3 class="title">Profile</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#Default_Address">Default</a></li>
-                            <li><a data-toggle="tab" href="#New_Address">New</a></li>
+                            <li class="active"><a data-toggle="tab" href="#Default_Account">Information</a></li>
+                            <li><a data-toggle="tab" href="#Update_Account">Update</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,11 +55,11 @@ include "partial/header.php"
             <!-- /Account Details Tab -->
 
             <!-- Account Details -->
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <div class="row">
                     <div class="products-tabs">
                         <!-- tab -->
-                        <div id="Default_Address" class="tab-pane active">
+                        <div id="Default_Account" class="tab-pane active">
                             <div class="form-group">
                                 <input class="input" type="text" name="name" value="<?php echo $member['username']; ?>"
                                        readonly>
@@ -84,10 +84,10 @@ include "partial/header.php"
                         <!-- /tab -->
 
                         <!-- tab -->
-                        <div id="New_Address" class="tab-pane">
+                        <div id="Update_Account" class="tab-pane">
                             <form method="post">
                                 <div class="form-group">
-                                    <input class="input" type="text" name="name" placeholder="Name"
+                                    <input class="input" type="text" name="name"
                                            value="<?php echo $member['username']; ?>"
                                            readonly>
                                 </div>
@@ -118,31 +118,6 @@ include "partial/header.php"
                 </div>
             </div>
             <!-- /Account Details -->
-
-            <!-- Order List -->
-            <div class="col-md-5 order-details">
-                <div class="section-title text-center">
-                    <h3 class="title">Order History</h3>
-                </div>
-                <div class="order-summary">
-                    <div class="order-col">
-                        <div><strong>PRODUCT</strong></div>
-                        <div><strong>TOTAL</strong></div>
-                    </div>
-                    <!-- 요기부분 반복문 -->
-                    <div class="order-products">
-                        <div class="order-col">
-                            <div>1x Product Name Goes Here</div>
-                            <div>$980.00</div>
-                        </div>
-                        <div class="order-col">
-                            <div>2x Product Name Goes Here</div>
-                            <div>$980.00</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Order List -->
         </div>
         <!-- /row -->
     </div>
