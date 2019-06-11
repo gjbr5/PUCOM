@@ -97,20 +97,9 @@ include "partial/header.php"
                                             </div>";
                                                 } ?>
                                                 <div class="product-btns">
-                                                    <button id=<?php echo "'quick-view'.$i"; ?> class="quick-view"><i
-                                                                class="fa fa-eye"></i></a>
+                                                    <button class="quick-view"><i class="fa fa-eye"></i></a>
                                                         <span class="tooltipp">quick view</span>
                                                     </button>
-                                                </div>
-                                                <div id='quick-view-popup' style='display:none; width:200px'>
-                                                    <span class='button b-close'
-                                                          style='border-radius:7px 7px 7px 7px; box-shadow:none; font:bold 131% sans-serif; padding:0 6px 2px; position:absolute; right:-7px; top:-7px; background-color:#2b91af; color:#fff; cursor: pointer; display: inline-block; text-align: center;'>
-                                                        <span>X</span>
-                                                    </span>
-                                                    <div class='content'>
-                                                        <img src="<?php echo $item['img_url']; ?>"
-                                                             alt="<?php echo $item['name']; ?>">
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="product-body">
@@ -127,8 +116,8 @@ include "partial/header.php"
                                                 </h4>
                                             </div>
                                             <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
-                                                    to cart
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>
+                                                    add to cart
                                                 </button>
                                             </div>
                                         </div>
@@ -235,7 +224,6 @@ include "partial/header.php"
                                     <!-- product -->
                                     <?php
                                     foreach ($product as $item) { ?>
-
                                         <div class="product">
                                             <div class="product-img">
                                                 <a href="product.php?c=<?php echo $item['category'] . "&pid=" . $item['product_id']; ?>"><img
@@ -248,8 +236,7 @@ include "partial/header.php"
                                                 echo "</div>";
                                                 ?>
                                                 <div class="product-btns">
-                                                    <button id=<?php echo "'quick-view'.($i+5)"; ?> class="quick-view">
-                                                        <i class="fa fa-eye"></i><span
+                                                    <button class="quick-view"><i class="fa fa-eye"></i><span
                                                                 class="tooltipp">quick view</span>
                                                     </button>
                                                 </div>
@@ -270,7 +257,8 @@ include "partial/header.php"
                                                 </button>
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                        <?php $j++;
+                                    } ?>
                                     <!-- /product -->
                                 </div>
                                 <div id="slick-nav-2" class="products-slick-nav"></div>
@@ -288,6 +276,17 @@ include "partial/header.php"
 </div>
 <!-- /SECTION -->
 
+<div id='quick-view-popup' style='display:none; width:200px'>
+                                                    <span class='button b-close'
+                                                          style='border-radius:7px 7px 7px 7px; box-shadow:none; font:bold 131% sans-serif; padding:0 6px 2px; position:absolute; right:-7px; top:-7px; background-color:#2b91af; color:#fff; cursor: pointer; display: inline-block; text-align: center;'>
+                                                        <span>X</span>
+                                                    </span>
+    <div class='content'>
+        <img src="<?php echo $item['img_url']; ?>"
+             alt="<?php echo $item['name']; ?>">
+    </div>
+</div>
+
 <!-- FOOTER -->
 <?php
 include "partial/footer.php"
@@ -301,44 +300,16 @@ include "partial/js_plugin.php"
 <script type="text/javascript">
     var BPOPUP = '';
     (function ($) {
-        $(function () {<?php
-            for ($i = 0; $i < 10; $i++) {
-                echo "$('#quick-view'.$i).bind('click', function(e) {";
-                echo "e.preventDefault();";
-                echo "BPOPUP =  $('#quick-view-popup'.$i).bPopup({";
-                echo "modalClose : true";
-                echo "});";
-                echo "});";
-            }
-            ?>
+        $(function () {
+            $('#quick-view').bind('click', function (e) {
+                e.preventDefault();
+                BPOPUP = $('#quick-view-popup').bPopup({
+                    modalClose: true
+                });
+            });
         });
     })(jQuery);
 </script>
-<script>
 
-    var baskets = [];
-
-    function basket() {
-        var num = Number($("#_number").val());
-        var chicken = $("#chicken").text();
-        var id = 7;
-        var obj = {
-            id : id,
-            num : num
-        };
-
-        var idx = baskets.findIndex(x => x.id == obj.id);
-        if (idx != -1) {
-            baskets[idx].num += obj.num;
-        } else {
-            baskets.push(obj);
-        }
-        Cookies.remove('baskets', { path: '../' });
-        Cookies.set('baskets', JSON.stringify(baskets));
-
-        alert(chicken + " " + num + "개를 장바구니에 담았습니다.");
-    }
-
-</script>
 </body>
 </html>
