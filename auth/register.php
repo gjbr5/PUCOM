@@ -87,11 +87,8 @@ include "../func/Database.php";
         </div>
         <div class="form-control">
             <label class="header"><?php echo $lang['address']; ?> :</label>
-            <input type="text" id="roadAddress" name="address" placeholder="<?php echo $lang['address']; ?>"
-                   readonly/><br/>
-            <label class="header transparent"></label>
-            <input type="text" id="detailAddress" name="detailAddress"
-                   placeholder="<?php echo $lang['detailaddress']; ?>"/>
+            <input type="text" id="address" name="address" placeholder="<?php echo $lang['address']; ?>"
+                   />
         </div>
 
         <!-- Register Button -->

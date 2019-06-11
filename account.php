@@ -61,22 +61,27 @@ include "partial/header.php"
                         <!-- tab -->
                         <div id="Default_Account" class="tab-pane active">
                             <div class="form-group">
+                                <label>USERNAME</label>
                                 <input class="input" type="text" name="name" value="<?php echo $member['username']; ?>"
                                        readonly>
                             </div>
                             <div class="form-group">
+                                <label>EMAIL</label>
                                 <input class="input" type="email" name="email" value="<?php echo $member['email']; ?>"
                                        readonly>
                             </div>
                             <div class="form-group">
+                                <label>PHONE</label>
                                 <input class="input" type="tel" name="phone" value="<?php echo $member['phone']; ?>"
                                        readonly>
                             </div>
                             <div class="form-group">
+                                <label>POST CODE</label>
                                 <input class="input" type="text" name="postcode"
                                        value="<?php echo $member['postcode']; ?>" readonly>
                             </div>
                             <div class="form-group">
+                                <label>ADDRESS</label>
                                 <input class="input" type="text" name="address"
                                        value="<?php echo $member['address']; ?>" readonly>
                             </div>
@@ -85,31 +90,42 @@ include "partial/header.php"
 
                         <!-- tab -->
                         <div id="Update_Account" class="tab-pane">
-                            <form method="post">
+                            <form method="post" action="func/auth.php">
+                                <input type="hidden" name="action" value="modify"/>
                                 <div class="form-group">
-                                    <input class="input" type="text" name="name"
+                                    <label>USERNAME</label>
+                                    <input class="input" type="text" name="username"
                                            value="<?php echo $member['username']; ?>"
                                            readonly>
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" type="email" name="email" placeholder="Email">
+                                    <label>PASSWORD</label>
+                                    <input class="input" type="password" name="password">
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" type="tel" name="phone" placeholder="Phone">
+                                    <label>PASSWORD CONFIRM</label>
+                                    <input class="input" type="password" name="password-confirm">
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" id="postcode" type="text" name="postcode"
-                                           placeholder="Post Code" onclick="execDaumPostcode()" readonly>
+                                    <label>EMAIL</label>
+                                    <input class="input" type="email" name="email" value="<?php echo $member['email']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" id="address" type="text" name="address" placeholder="Address"
-                                           readonly>
+                                    <label>PHONE</label>
+                                    <input class="input" type="tel" name="phone" value="<?php echo $member['phone']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input class="input" type="text" name="detailAddress" placeholder="Detail Address">
+                                    <label>POST CODE</label>
+                                    <input class="input" id="postcode" type="text" name="postcode" value="<?php echo $member['postcode']; ?>"
+                                           onclick="execDaumPostcode()" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>ADDRESS</label>
+                                    <input class="input" id="address" type="text" name="address" value="<?php echo $member['address']; ?>">
                                 </div>
                                 <a href="account.php">
-                                    <input type="submit" class="primary-btn" style="float: right;" value="Update"></input>
+                                    <input type="submit" class="primary-btn" style="float: right;"
+                                           value="Update"/>
                                 </a>
                             </form>
                         </div>

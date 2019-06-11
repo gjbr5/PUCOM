@@ -164,13 +164,46 @@ function register($info)
     }
     if (isset($info['address']) && trim($info['address']) != '') {
         $attr .= ", address";
-        $values .= ", '" . mysqli_real_escape_string($db, $info['address']);
-        if (isset($info['detailAddress']) && trim($info['detailAddress']) != '') {
-            $values .= " " . mysqli_real_escape_string($db, $info['detailAddress']);
-        }
-        $values .= "'";
+        $values .= ", '" . mysqli_real_escape_string($db, $info['address']) . "'";
     }
 
     $sql = "INSERT INTO member($attr) VALUES ($values);";
+    return mysqli_query($db, $sql);
+}
+
+function modify($info)
+{
+    $db = connDB();
+    $values = "";
+
+    if (isset($info['password']) && trim($info['password']) != '') {
+        $values .= " password='";
+        $password = password_hash($info['password'], PASSWORD_BCRYPT);
+        $password = mysqli_real_escape_string($db, $password);
+        $values .= $password . "'";
+    } else
+        return false;
+
+    if (isset($info['email']) && trim($info['email']) != '') {
+        $values .= ", email='";
+        $values .= mysqli_real_escape_string($db, $info['email']) . "'";
+    } else
+        return false;
+
+    if (isset($info['phone']) && trim($info['phone']) != '') {
+        $values .= ", phone='";
+        $values .= mysqli_real_escape_string($db, $info['phone']) . "'";
+    }
+    if (isset($info['postcode']) && trim($info['postcode']) != '') {
+        $values .= ", postcode=";
+        $values .= mysqli_real_escape_string($db, $info['postcode']);
+    }
+    if (isset($info['address']) && trim($info['address']) != '') {
+        $values .= ", address='";
+        $values .= mysqli_real_escape_string($db, $info['address']) . "'";
+    }
+
+    $sql = "UPDATE member SET".$values." WHERE username='".mysqli_real_escape_string($db, $info['username'])."'";
+    echo "<script>alert({$sql});</script>";
     return mysqli_query($db, $sql);
 }

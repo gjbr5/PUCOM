@@ -2,7 +2,7 @@
 session_start();
 
 //logout
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['username']) && !isset($_POST['action'])) {
     session_destroy();
     unset($_SESSION['username']);
     echo "<script>location.replace('../');</script>";
@@ -31,5 +31,13 @@ if ($_POST['action'] == "register") {
         echo "<script>alert('Welcome!');location.replace('../');</script>";
     } else {
         echo "<script>alert('Register Failed');history.go(-1);</script>";
+    }
+}
+
+if ($_POST['action'] == "modify") {
+    if (modify($_POST)) {
+        echo "<script>alert('Success');location.replace('../');</script>";
+    } else {
+        echo "<script>alert('Failed');history.go(-1);</script>";
     }
 }
