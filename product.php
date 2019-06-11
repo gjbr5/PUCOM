@@ -4,7 +4,7 @@ include "func/Database.php";
 $product = getProduct("SELECT * FROM product WHERE category={$_GET['c']} AND left(product_id,4)=left('{$_GET['pid']}', 4);");
 ?>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <?php
 include "partial/head.php"
 ?>

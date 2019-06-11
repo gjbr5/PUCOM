@@ -4,14 +4,14 @@ include "../func/Database.php";
 if (isset($_GET['num']))
     $post = getPost($_GET['num']);
 if (!isset($post) || !$post) {
-    echo '<script>alert("잘못된 게시글 번호입니다.");location.replace("qna.php");</script>';
+    echo '<script>alert("Wrong Post Number.");location.replace("qna.php");</script>';
     exit;
 }
 increaseHits($_GET['num']);
 $post['hits']++;
 ?>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <?php
 include "../partial/head.php"
 ?>
@@ -59,7 +59,7 @@ include "../partial/header.php"
                     <div><?php echo $post['content'];?></div>
                 </div>
                 <a href="qna.php">
-                    <button class="primary-btn" style="margin-top:10px; float: right;">목록</button>
+                    <button class="primary-btn" style="margin-top:10px; float: right;">List</button>
                 </a>
             </div>
         </div>

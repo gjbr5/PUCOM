@@ -1,13 +1,3 @@
-<?php
-$depth = 0;
-$url = $_SERVER['PHP_SELF'];
-while (strrpos($url, '/') > 0) {
-    $url = substr($url, 0, strrpos($url, '/'));
-    $depth++;
-}
-$root = str_repeat("../", $depth);
-
-?>
 <!-- HEADER -->
 <header>
     <!-- MAIN HEADER -->

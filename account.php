@@ -24,7 +24,7 @@ include "partial/header.php"
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
-                <h3 class="breadcrumb-header">Checkout</h3>
+                <h3 class="breadcrumb-header">My Account</h3>
             </div>
         </div>
         <!-- /row -->
@@ -40,10 +40,10 @@ include "partial/header.php"
         <!-- row -->
         <div class="row">
 
-            <!-- Shipping Details Tab -->
+            <!-- Account Details Tab -->
             <div class="col-md-7">
                 <div class="section-title">
-                    <h3 class="title">Billing Address</h3>
+                    <h3 class="title">Account Information</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#Default_Address">Default</a></li>
@@ -52,9 +52,9 @@ include "partial/header.php"
                     </div>
                 </div>
             </div>
-            <!-- /Shipping Details Tab -->
+            <!-- /Account Details Tab -->
 
-            <!-- Shipping Details -->
+            <!-- Account Details -->
             <div class="col-md-7">
                 <div class="row">
                     <div class="products-tabs">
@@ -85,48 +85,51 @@ include "partial/header.php"
 
                         <!-- tab -->
                         <div id="New_Address" class="tab-pane">
-                            <div class="form-group">
-                                <input class="input" type="text" name="name" placeholder="Name" value="">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="tel" name="phone" placeholder="Phone">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" id="postcode" type="text" name="postcode" placeholder="Post Code" onclick="execDaumPostcode()" readonly>
-                            </div>
-                            <div class="form-group">
-                                <input class="input" id="address" type="text" name="address" placeholder="Address" readonly>
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="detailAddress" placeholder="Detail Address">
-                            </div>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input class="input" type="text" name="name" placeholder="Name"
+                                           value="<?php echo $member['username']; ?>"
+                                           readonly>
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="email" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="tel" name="phone" placeholder="Phone">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" id="postcode" type="text" name="postcode"
+                                           placeholder="Post Code" onclick="execDaumPostcode()" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" id="address" type="text" name="address" placeholder="Address"
+                                           readonly>
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="detailAddress" placeholder="Detail Address">
+                                </div>
+                                <a href="account.php">
+                                    <input type="submit" class="primary-btn" style="float: right;" value="Update"></input>
+                                </a>
+                            </form>
                         </div>
                         <!-- /tab -->
-
-                        <!-- Order notes -->
-                        <div class="order-notes" style="margin-right:15px;">
-                            <textarea class="input" placeholder="Order Notes"></textarea>
-                        </div>
-                        <!-- /Order notes -->
-
                     </div>
                 </div>
             </div>
-            <!-- /Shipping Details -->
+            <!-- /Account Details -->
 
-            <!-- Order Details -->
+            <!-- Order List -->
             <div class="col-md-5 order-details">
                 <div class="section-title text-center">
-                    <h3 class="title">Your Order</h3>
+                    <h3 class="title">Order History</h3>
                 </div>
                 <div class="order-summary">
                     <div class="order-col">
                         <div><strong>PRODUCT</strong></div>
                         <div><strong>TOTAL</strong></div>
                     </div>
+                    <!-- 요기부분 반복문 -->
                     <div class="order-products">
                         <div class="order-col">
                             <div>1x Product Name Goes Here</div>
@@ -137,25 +140,9 @@ include "partial/header.php"
                             <div>$980.00</div>
                         </div>
                     </div>
-                    <div class="order-col">
-                        <div>Shiping</div>
-                        <div><strong>FREE</strong></div>
-                    </div>
-                    <div class="order-col">
-                        <div><strong>TOTAL</strong></div>
-                        <div><strong class="order-total">$2940.00</strong></div>
-                    </div>
                 </div>
-                <div class="input-checkbox">
-                    <input type="checkbox" id="terms">
-                    <label for="terms">
-                        <span></span>
-                        I've read and accept the <a href="#">terms & conditions</a>
-                    </label>
-                </div>
-                <a href="#" class="primary-btn order-submit">Place order</a>
             </div>
-            <!-- /Order Details -->
+            <!-- /Order List -->
         </div>
         <!-- /row -->
     </div>
