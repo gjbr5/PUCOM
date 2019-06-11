@@ -3,7 +3,7 @@ session_start();
 include "func/Database.php";
 ?>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <?php
 include "partial/head.php"
 ?>

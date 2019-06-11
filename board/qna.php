@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <?php
 include "../func/Database.php";
 $member = getMemberInfo();
