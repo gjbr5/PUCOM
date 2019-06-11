@@ -47,6 +47,24 @@ function getColor($pid)
     }
 }
 
+function getColorNum($color)
+{
+    switch ($color) {
+        case 'Black':
+            return '00';
+        case 'White':
+            return '11';
+        case 'Red':
+            return '22';
+        case 'Blue':
+            return '33';
+        case 'Green':
+            return '44';
+        case 'Gray':
+            return '55';
+    }
+}
+
 function getCategory($category)
 {
     switch ($category) {

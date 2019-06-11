@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "func/Database.php";
-$product = getProduct("SELECT * FROM product WHERE category={$_GET['c']} AND left(product_id,4)=left('{$_GET['pid']}', 4);");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +11,8 @@ include "partial/head.php"
 <!-- HEADER -->
 <!-- NAVIGATION -->
 <?php
-include "partial/header.php"
+include "partial/header.php";
+$product = getProduct("SELECT * FROM product WHERE category={$_GET['c']} AND left(product_id,4)=left('{$_GET['pid']}', 4);");
 ?>
 <!-- /NAVIGATION -->
 <!-- /HEADER -->
@@ -64,7 +64,7 @@ include "partial/header.php"
                     <div class="product-options">
                         <label>
                             Color
-                            <select class="input-select">
+                            <select class="input-select" id="color">
                                 <?php foreach ($product as $item) {
                                     $color = getColor($item['product_id']);
                                     echo "<option value=\"$color\">" . $color . "</option>";
@@ -77,7 +77,7 @@ include "partial/header.php"
                         <div class="qty-label">
                             Qty
                             <div class="input-number">
-                                <input type="number" , value="1">
+                                <input type="number" id="qty" value="1"/>
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
@@ -105,7 +105,7 @@ include "partial/header.php"
                     <!-- /product tab nav -->
                     <!-- product tab content -->
                     <div>
-                        <p><?php echo $product[0]['description'];?></p>
+                        <p><?php echo $product[0]['description']; ?></p>
                     </div>
                     <!-- /product tab content  -->
                 </div>
@@ -130,4 +130,73 @@ include "partial/js_plugin.php"
 ?>
 
 </body>
+<script>
+    function getCookie(sName) {
+        sName = sName.toLowerCase();
+        var oCrumbles = document.cookie.split(';');
+        for (var i = 0; i < oCrumbles.length; i++) {
+            var oPair = oCrumbles[i].split('=');
+            var sKey = decodeURIComponent(oPair[0].trim().toLowerCase());
+            var sValue = oPair.length > 1 ? oPair[1] : '';
+            if (sKey === sName)
+                return decodeURIComponent(sValue);
+        }
+        return undefined;
+    }
+
+    function setCookie(sName, sValue) {
+        var oDate = new Date();
+        oDate.setYear(oDate.getFullYear() + 1);
+        var sCookie = encodeURIComponent(sName) + '=' + encodeURIComponent(sValue) + ';expires=' + oDate.toGMTString() + ';path=/';
+        document.cookie = sCookie;
+    }
+
+    $('.add-to-cart-btn').bind('click', function () {
+        var cookie = getCookie('cart');
+        var list = [];
+        if (cookie) {
+            list = JSON.parse(getCookie('cart'));
+            console.log(list);
+        }
+        var order = {
+            c:<?php echo $_GET['c'];?>,
+            pid:<?php echo substr($_GET['pid'], 0, 4);?>,
+            color: $('#color').val(),
+            qty: Number($('#qty').val()),
+            number:<?php echo $_GET['c'].substr($_GET['pid'], 0, 4);?>+getColorNum($('#color').val())
+        };
+        var find = false;
+        for (var i = 0; i < list.length; i++) {
+            if (order.c === list[i].c && order.pid === list[i].pid && order.color === list[i].color) {
+                list[i].qty += order.qty;
+                find = true;
+                break;
+            }
+        }
+        if (!find)
+            list.push(order);
+        setCookie('cart', JSON.stringify(list));
+        window.location.reload();
+    });
+
+
+    function getColorNum(color)
+    {
+        switch (color) {
+            case 'Black':
+                return '00';
+            case 'White':
+                return '11';
+            case 'Red':
+                return '22';
+            case 'Blue':
+                return '33';
+            case 'Green':
+                return '44';
+            case 'Gray':
+                return '55';
+        }
+    }
+
+</script>
 </html>
