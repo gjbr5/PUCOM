@@ -115,11 +115,6 @@ include "partial/header.php"
                                                     } ?>
                                                 </h4>
                                             </div>
-                                            <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>
-                                                    add to cart
-                                                </button>
-                                            </div>
                                         </div>
                                     <?php } ?>
                                     <!-- /product -->
@@ -251,11 +246,6 @@ include "partial/header.php"
                                                     ?>
                                                 </h4>
                                             </div>
-                                            <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add
-                                                    to cart
-                                                </button>
-                                            </div>
                                         </div>
                                         <?php
                                     } ?>
@@ -299,7 +289,7 @@ include "partial/js_plugin.php"
         $(function () {
             $('.quick-view').bind('click', function (e) {
                 e.preventDefault();
-                var img=$(this).parent().parent().children("a").children("img");
+                var img = $(this).parent().parent().children("a").children("img");
                 $('#quick-view-img').attr('src', img.attr('src'));
                 BPOPUP = $('#quick-view-popup').bPopup({
                     modalClose: true
@@ -308,6 +298,5 @@ include "partial/js_plugin.php"
         });
     })(jQuery);
 </script>
-
 </body>
 </html>
