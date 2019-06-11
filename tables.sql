@@ -6,9 +6,7 @@ CREATE TABLE member
     email      VARCHAR(50),
     phone      VARCHAR(13),
     postcode   INT(11),
-    address    VARCHAR(100),
-    used_money INT(11)     DEFAULT 0,
-    membership VARCHAR(10) DEFAULT 'FAMILY'
+    address    VARCHAR(100)
 );
 
 CREATE TABLE product

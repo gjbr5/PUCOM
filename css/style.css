@@ -1051,6 +1051,20 @@ textarea.input {
     visibility: visible;
 }
 
+#quick-view-popup .button-close {
+    border-radius:7px 7px 7px 7px;
+    box-shadow:none;
+    font:bold 131% sans-serif;
+    padding:0 6px 2px;
+    background-color:#2b91af;
+    color:#fff;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#quick-view-popup img {
+    width: 600px;
+}
 /*----------------------------*\
 	Widget product
 \*----------------------------*/
