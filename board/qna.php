@@ -94,12 +94,14 @@ include "../partial/header.php";
                         $row = getBoardList();
                         if ($row) {
                             foreach ($row as $item) {
+                                echo "<a href=\"view.php?num={$item['num']}\">";
                                 echo "<div class=\"table-row\">";
                                 echo "<div class=\"table-data\">{$item['num']}</div>";
                                 echo "<div class=\"table-data\">{$item['title']}</div>";
                                 echo "<div class=\"table-data\">{$item['date']}</div>";
                                 echo "<div class=\"table-data\">{$item['hits']}</div>";
                                 echo "</div>";
+                                echo "</a>";
                             }
                         }
                         ?>

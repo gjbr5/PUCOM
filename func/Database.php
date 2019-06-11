@@ -29,8 +29,9 @@ function getProduct($sql)
     return $products;
 }
 
-function getColor($pid) {
-    switch(substr($pid, strlen($pid)-2, 2)) {
+function getColor($pid)
+{
+    switch (substr($pid, strlen($pid) - 2, 2)) {
         case '00':
             return 'Black';
         case '11':
@@ -45,8 +46,10 @@ function getColor($pid) {
             return 'Gray';
     }
 }
-function getCategory($category) {
-    switch($category) {
+
+function getCategory($category)
+{
+    switch ($category) {
         case '100':
             return 'Desktops';
         case '200':
@@ -70,6 +73,17 @@ function getBoardList()
     return $list;
 }
 
+function getPost($num)
+{
+    $db = connDB();
+    mysqli_real_escape_string($db, $num);
+    $post = mysqli_query($db, "SELECT * FROM post WHERE post_num=$num");
+    if ($post)
+        $post = mysqli_fetch_array($post);
+    mysqli_close($db);
+    return $post;
+}
+
 function login($username, $password)
 {
     $db = connDB();
@@ -88,13 +102,13 @@ function register($info)
     $db = connDB();
     $attr = "";
     $values = "";
-    if (isset($info['username']) && trim($info['username'])!='') {
+    if (isset($info['username']) && trim($info['username']) != '') {
         $attr .= "username";
         $values .= "'" . mysqli_real_escape_string($db, $info['username']) . "'";
     } else
         return false;
 
-    if (isset($info['password']) && trim($info['password'])!='') {
+    if (isset($info['password']) && trim($info['password']) != '') {
         $attr .= ", password";
         $password = password_hash($info['password'], PASSWORD_BCRYPT);
         $password = mysqli_real_escape_string($db, $password);
@@ -102,19 +116,19 @@ function register($info)
     } else
         return false;
 
-    if (isset($info['name']) && trim($info['name'])!='') {
+    if (isset($info['name']) && trim($info['name']) != '') {
         $attr .= ", name";
         $values .= ", '" . mysqli_real_escape_string($db, $info['name']) . "'";
     } else
         return false;
 
-    if (isset($info['email']) && trim($info['email'])!='') {
+    if (isset($info['email']) && trim($info['email']) != '') {
         $attr .= ", email";
         $values .= ", '" . mysqli_real_escape_string($db, $info['email']) . "'";
     } else
         return false;
 
-    if (isset($info['phone']) && trim($info['phone'])!='') {
+    if (isset($info['phone']) && trim($info['phone']) != '') {
         $attr .= ", phone";
         $values .= ", '" . mysqli_real_escape_string($db, $info['phone']) . "'";
     }
@@ -122,10 +136,10 @@ function register($info)
         $attr .= ", postcode";
         $values .= ", " . mysqli_real_escape_string($db, $info['postcode']);
     }
-    if (isset($info['address']) && trim($info['address'])!='') {
+    if (isset($info['address']) && trim($info['address']) != '') {
         $attr .= ", address";
         $values .= ", '" . mysqli_real_escape_string($db, $info['address']);
-        if (isset($info['detailAddress']) && trim($info['detailAddress'])!='') {
+        if (isset($info['detailAddress']) && trim($info['detailAddress']) != '') {
             $values .= " " . mysqli_real_escape_string($db, $info['detailAddress']);
         }
         $values .= "'";
