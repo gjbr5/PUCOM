@@ -277,12 +277,11 @@ include "partial/header.php"
 <!-- /SECTION -->
 
 <div id='quick-view-popup' style='display:none; width:200px'>
-    <span class='button b-close' style='border-radius:7px 7px 7px 7px; box-shadow:none; font:bold 131% sans-serif; padding:0 6px 2px; position:absolute; right:-7px; top:-7px; background-color:#2b91af; color:#fff; cursor: pointer; display: inline-block; text-align: center;'>
+    <span class='button b-close'
+          style='border-radius:7px 7px 7px 7px; box-shadow:none; font:bold 131% sans-serif; padding:0 6px 2px; position:absolute; right:-7px; top:-7px; background-color:#2b91af; color:#fff; cursor: pointer; display: inline-block; text-align: center;'>
         <span>X</span>
     </span>
-    <div class='content'>
-        <img id="quick-view-img" src=alt="">
-    </div>
+        <img id="quick-view-img"/>
 </div>
 
 <!-- FOOTER -->
@@ -299,12 +298,10 @@ include "partial/js_plugin.php"
     var BPOPUP = '';
     (function ($) {
         $(function () {
-            $('#quick-view').bind('click', function (e) {
+            $('.quick-view').bind('click', function (e) {
                 e.preventDefault();
-                var parent = $(this).parentnode;
-                var img = parent.siblings("a").childnodes;
-                console.log(img.src);
-                $('#quick-view-img').src = img.src;
+                var img=$(this).parent().parent().children("a").children("img");
+                $('#quick-view-img').attr('src', img.attr('src'));
                 BPOPUP = $('#quick-view-popup').bPopup({
                     modalClose: true
                 });
