@@ -28,7 +28,7 @@ CREATE TABLE post
     content  TEXT,
     member   VARCHAR(11) NOT NULL,
     wrt_date TIMESTAMP DEFAULT current_timestamp(),
-    hits     INT(11),
+    hits     INT(11) DEFAULT 0,
     FOREIGN KEY (member) REFERENCES member (username)
 );
 

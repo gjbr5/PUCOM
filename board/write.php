@@ -45,19 +45,24 @@ include "../partial/header.php";
     <div class="container">
         <!-- row -->
         <div class="row">
-            <form method="post" action="write_model.php">
-                <input type="text" id="member" name="member" value="<?php echo $_SESSION['username'];?>" readonly/> <br/>
-                <input type="text" name="title" placeholder="Title" required/> <br/>
-                <textarea name="content" placeholder="Contents"></textarea>
-                <input type="submit"/>
-            </form>
+            <div class="col-md-10">
+
+                <form method="post" action="write_model.php">
+                    <div class="qnatable">
+                        <input class="input" type="hidden" id="member" name="member"
+                               value="<?php echo $_SESSION['username']; ?>"/>
+                        <input class="input" type="text" name="title" placeholder="Title" required/> <br/><br/>
+                        <textarea class="input-area" name="content" placeholder="Contents"></textarea>
+                        <input class="primary-btn" style="margin-top:20px; float: right;" type="submit"/>
+                    </div>
+                </form>
+            </div>
         </div>
         <!-- /row -->
     </div>
     <!-- /container -->
 </div>
 <!-- /SECTION -->
-
 <!-- FOOTER -->
 <?php
 include "../partial/footer.php";

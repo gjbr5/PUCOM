@@ -122,7 +122,13 @@ ul, ol {
     background-color: #FFF;
     width: 100%;
 }
-
+.input-area {
+    height: 400px;
+    padding: 0px 15px;
+    border: 1px solid #E4E7ED;
+    background-color: #FFF;
+    width: 100%;
+}
 textarea.input {
     padding: 15px;
     min-height: 90px;
@@ -1898,7 +1904,35 @@ textarea.input {
     min-height: 100px;
     font-family: 'Source Sans Pro', sans-serif;
 }
+.qnatable {
+    display: block;
+    border: 1px solid #000;
+    padding: 10px;
+}
+.qnatable .theader {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+    width:100%;
+}
 
+.qnatable .theader span + span {
+    border-left: 1px solid #000;
+    margin-left: 100px;
+    padding-left: 3px;
+}
+
+.qnatable .theader span label {
+    margin-right: 20px;
+}
+
+.qnatable .title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    background-color: #eeeeee;
+}
+.qnatable .title label {
+    margin-right:20px;
+}
 .table {
     width: 100%;
     border: 1px solid var(--color-form-highlight);
