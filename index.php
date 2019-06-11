@@ -276,7 +276,7 @@ include "partial/header.php"
 </div>
 <!-- /SECTION -->
 
-<div id='quick-view-popup' style='display:none; width:200px;'>
+<div id='quick-view-popup'>
     <span class='button-close'>
         <span>X</span>
     </span>
@@ -302,9 +302,7 @@ include "partial/js_plugin.php"
                 var img=$(this).parent().parent().children("a").children("img");
                 $('#quick-view-img').attr('src', img.attr('src'));
                 BPOPUP = $('#quick-view-popup').bPopup({
-                    modalClose: true,
-                    opacity: 0.5,
-                    position: [150, 400]
+                    modalClose: true
                 });
             });
         });
