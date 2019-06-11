@@ -77,11 +77,19 @@ function getPost($num)
 {
     $db = connDB();
     mysqli_real_escape_string($db, $num);
-    $post = mysqli_query($db, "SELECT * FROM post WHERE post_num=$num");
+    $post = mysqli_query($db, "SELECT * FROM post WHERE post_num=$num;");
     if ($post)
         $post = mysqli_fetch_array($post);
     mysqli_close($db);
     return $post;
+}
+
+function increaseHits($num)
+{
+    $db = connDB();
+    mysqli_real_escape_string($db, $num);
+    mysqli_query($db, "UPDATE post SET hits=hits+1 WHERE post_num=$num;");
+    mysqli_close($db);
 }
 
 function login($username, $password)

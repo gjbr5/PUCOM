@@ -1,10 +1,13 @@
 <?php
 include "../func/Database.php";
-$post=getPost($_GET['num']);
-if(!$post) {
+if (isset($_GET['num']))
+    $post = getPost($_GET['num']);
+if (!isset($post) || !$post) {
     echo '<script>alert("잘못된 게시글 번호입니다.");location.replace("qna.php");</script>';
     exit;
 }
+increaseHits($_GET['num']);
+$post['hits']++;
 
 ?>
 <!DOCTYPE html>
@@ -78,12 +81,20 @@ include "../partial/header.php";
             <table>
                 <thead>
                 <tr>
-                    <td>ID</td>
+                    <td>NUM</td><td><?php echo $post['post_num'];?></td>
+                    <td>Hits</td><td><?php echo $post['hits'];?></td>
+                </tr>
+                <tr>
+                    <td>Member</td><td><?php echo $post['member'];?></td>
+                    <td>Date</td><td><?php echo $post['wrt_date'];?></td>
+                </tr>
+                <tr>
+                    <td>Title</td><td><?php echo $post['title'];?></td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>asdf</td>
+                    <td><?php echo $post['content'];?></td>
                 </tr>
                 </tbody>
             </table>

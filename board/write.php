@@ -45,10 +45,10 @@ include "../partial/header.php";
     <div class="container">
         <!-- row -->
         <div class="row">
-            <form method="post">
+            <form method="post" action="write_model.php">
                 <input type="text" id="member" name="member" value="<?php echo $_SESSION['username'];?>" readonly/> <br/>
                 <input type="text" name="title" placeholder="Title" required/> <br/>
-                <textarea name="contents" placeholder="Contents"></textarea>
+                <textarea name="content" placeholder="Contents"></textarea>
                 <input type="submit"/>
             </form>
         </div>
