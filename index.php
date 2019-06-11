@@ -97,9 +97,18 @@ include "partial/header.php"
                                             </div>";
                                                 } ?>
                                                 <div class="product-btns">
-                                                    <button class="quick-view"><i class="fa fa-eye"></i></a>
+                                                    <button id=<?php echo "'quick-view'.$i";?> class="quick-view"><i class="fa fa-eye"></i></a>
                                                         <span class="tooltipp">quick view</span>
                                                     </button>
+                                                </div>
+                                                <div id='quick-view-popup' style='display:none; width:200px'>
+                                                    <span class='button b-close' style='border-radius:7px 7px 7px 7px; box-shadow:none; font:bold 131% sans-serif; padding:0 6px 2px; position:absolute; right:-7px; top:-7px; background-color:#2b91af; color:#fff; cursor: pointer; display: inline-block; text-align: center;'>
+                                                        <span>X</span>
+                                                    </span>
+                                                    <div class='content'>
+                                                        <img src="<?php echo $item['img_url']; ?>"
+                                                             alt="<?php echo $item['name']; ?>">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="product-body">
@@ -237,7 +246,7 @@ include "partial/header.php"
                                                 echo "</div>";
                                                 ?>
                                                 <div class="product-btns">
-                                                    <button class="quick-view"><i class="fa fa-eye"></i><span
+                                                    <button id=<?php echo "'quick-view'.($i+5)";?> class="quick-view"><i class="fa fa-eye"></i><span
                                                                 class="tooltipp">quick view</span>
                                                     </button>
                                                 </div>
@@ -276,10 +285,6 @@ include "partial/header.php"
 </div>
 <!-- /SECTION -->
 
-<div id="quick-view-popup" style="display: none; background-color: white; width: 500px; height: 300px;">
-    <p> GREAT </p>
-</div>
-
 <!-- FOOTER -->
 <?php
 include "partial/footer.php"
@@ -293,13 +298,16 @@ include "partial/js_plugin.php"
 <script type="text/javascript">
     var BPOPUP='';
     (function($) {
-        $(function() {
-            $('.quick-view').bind('click', function(e) {
-                e.preventDefault();
-                BPOPUP =  $('#quick-view-popup').bPopup({
-                    modalClose : true
-                });
-            });
+        $(function() {<?php
+                for($i=0; $i<10; $i++){
+                    echo "$('#quick-view'.$i).bind('click', function(e) {";
+                    echo "e.preventDefault();";
+                    echo "BPOPUP =  $('#quick-view-popup'.$i).bPopup({";
+                    echo "modalClose : true";
+                    echo "});";
+                    echo "});";
+                    echo "}";
+                    ?>
         });
     })(jQuery);
 </script>
