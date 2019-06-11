@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    echo "<script>alert('Access Denied');location.replace('../');</script>";
+    echo "<script>alert('Access Denied');location.replace('qna.php');</script>";
     exit;
 }
 ?>

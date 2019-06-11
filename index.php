@@ -276,12 +276,11 @@ include "partial/header.php"
 </div>
 <!-- /SECTION -->
 
-<div id='quick-view-popup' style='display:none; width:200px'>
-    <span class='button b-close'
-          style='border-radius:7px 7px 7px 7px; box-shadow:none; font:bold 131% sans-serif; padding:0 6px 2px; position:absolute; right:-7px; top:-7px; background-color:#2b91af; color:#fff; cursor: pointer; display: inline-block; text-align: center;'>
+<div id='quick-view-popup'>
+    <span class='button-close'>
         <span>X</span>
     </span>
-        <img id="quick-view-img"/>
+    <img id="quick-view-img"/>
 </div>
 
 <!-- FOOTER -->
