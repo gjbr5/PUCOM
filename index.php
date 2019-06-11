@@ -257,7 +257,7 @@ include "partial/header.php"
                                                 </button>
                                             </div>
                                         </div>
-                                        <?php $j++;
+                                        <?php
                                     } ?>
                                     <!-- /product -->
                                 </div>

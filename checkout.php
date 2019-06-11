@@ -61,19 +61,24 @@ include "partial/header.php"
                         <!-- tab -->
                         <div id="Default_Address" class="tab-pane active">
                             <div class="form-group">
-                                <input class="input" type="text" name="name" placeholder="E" value="" readonly>
+                                <input class="input" type="text" name="name" value="<?php echo $member['username']; ?>"
+                                       readonly>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="F" readonly>
+                                <input class="input" type="email" name="email" value="<?php echo $member['email']; ?>"
+                                       readonly>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="tel" name="tel" placeholder="A" readonly>
+                                <input class="input" type="tel" name="phone" value="<?php echo $member['phone']; ?>"
+                                       readonly>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="postcode" placeholder="U" readonly>
+                                <input class="input" type="text" name="postcode"
+                                       value="<?php echo $member['postcode']; ?>" readonly>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="L" readonly>
+                                <input class="input" type="text" name="address"
+                                       value="<?php echo $member['address']; ?>" readonly>
                             </div>
                         </div>
                         <!-- /tab -->
@@ -87,13 +92,16 @@ include "partial/header.php"
                                 <input class="input" type="email" name="email" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="tel" name="tel" placeholder="Telephone">
+                                <input class="input" type="tel" name="phone" placeholder="Phone">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="postcode" placeholder="Post Code">
+                                <input class="input" id="postcode" type="text" name="postcode" placeholder="Post Code" onclick="execDaumPostcode()" readonly>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Address">
+                                <input class="input" id="address" type="text" name="address" placeholder="Address" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="text" name="detailAddress" placeholder="Detail Address">
                             </div>
                         </div>
                         <!-- /tab -->
@@ -165,19 +173,28 @@ include "partial/footer.php"
 <?php
 include "partial/js_plugin.php"
 ?>
-<script type="text/javascript">
-    var BPOPUP='';
-    (function($) {
-        $(function() {
-            $('.quick-view').bind('click', function(e) {
-                e.preventDefault();
-                BPOPUP =  $('#quick-view-popup').bPopup({
-                    modalClose : true
-                });
-            });
-        });
-    })(jQuery);
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+    <!-- Daum Address API -->
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                var roadAddr = data.roadAddress;
+                var extraRoadAddr = '';
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                    extraRoadAddr += data.bname;
+                }
+                if (data.buildingName !== '') {
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if (extraRoadAddr !== '') {
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = roadAddr + extraRoadAddr;
+            }
+        }).open();
+    }
 </script>
-
 </body>
 </html>
