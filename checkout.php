@@ -13,6 +13,7 @@ include "partial/head.php"
 <!-- NAVIGATION -->
 <?php
 include "partial/header.php"
+
 ?>
 <!-- /NAVIGATION -->
 <!-- /HEADER -->
@@ -95,10 +96,12 @@ include "partial/header.php"
                                 <input class="input" type="tel" name="phone" placeholder="Phone">
                             </div>
                             <div class="form-group">
-                                <input class="input" id="postcode" type="text" name="postcode" placeholder="Post Code" onclick="execDaumPostcode()" readonly>
+                                <input class="input" id="postcode" type="text" name="postcode" placeholder="Post Code"
+                                       onclick="execDaumPostcode()" readonly>
                             </div>
                             <div class="form-group">
-                                <input class="input" id="address" type="text" name="address" placeholder="Address" readonly>
+                                <input class="input" id="address" type="text" name="address" placeholder="Address"
+                                       readonly>
                             </div>
                             <div class="form-group">
                                 <input class="input" type="text" name="detailAddress" placeholder="Detail Address">
@@ -128,22 +131,21 @@ include "partial/header.php"
                         <div><strong>TOTAL</strong></div>
                     </div>
                     <div class="order-products">
-                        <div class="order-col">
-                            <div>1x Product Name Goes Here</div>
-                            <div>$980.00</div>
-                        </div>
-                        <div class="order-col">
-                            <div>2x Product Name Goes Here</div>
-                            <div>$980.00</div>
-                        </div>
-                    </div>
-                    <div class="order-col">
-                        <div>Shiping</div>
-                        <div><strong>FREE</strong></div>
+                        <?php
+                        if($product) {
+                            foreach ($product as $item) {
+                                echo "<div class=\"order-col\">";
+                                echo "<div>" . $item['qty'] . "x ." . $item['name'] . "</div>";
+                                echo "<div>$" . $item['price'] * (100 - $item['sales']) / 100 * $item['qty'] . "</div>";
+                                echo "</div>";
+                            }
+                        }
+                        ?>
+
                     </div>
                     <div class="order-col">
                         <div><strong>TOTAL</strong></div>
-                        <div><strong class="order-total">$2940.00</strong></div>
+                        <div><strong class="order-total">$<?php if($product)echo $sum;?></strong></div>
                     </div>
                 </div>
                 <div class="input-checkbox">
@@ -153,7 +155,7 @@ include "partial/header.php"
                         I've read and accept the <a href="#">terms & conditions</a>
                     </label>
                 </div>
-                <a href="#" class="primary-btn order-submit">Place order</a>
+                <a href="index.php" class="primary-btn order-submit">Place order</a>
             </div>
             <!-- /Order Details -->
         </div>
