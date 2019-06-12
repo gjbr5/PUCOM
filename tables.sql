@@ -18,7 +18,8 @@ CREATE TABLE product
     price       DECIMAL(11, 2),
     img_url     VARCHAR(200),
     upload_date TIMESTAMP DEFAULT current_timestamp(),
-    sales       INT(3)    DEFAULT 0
+    sales       INT(3)    DEFAULT 0,
+    product_id  INT(11)
 );
 
 CREATE TABLE post
@@ -30,33 +31,6 @@ CREATE TABLE post
     wrt_date TIMESTAMP DEFAULT current_timestamp(),
     hits     INT(11) DEFAULT 0,
     FOREIGN KEY (member) REFERENCES member (username)
-);
-
-CREATE TABLE reply
-(
-    repl_num  INT(11) PRIMARY KEY AUTO_INCREMENT,
-    post_num  INT(11) NOT NULL,
-    comm_date TIMESTAMP DEFAULT current_timestamp(),
-    content   TEXT,
-    FOREIGN KEY (post_num) REFERENCES post (post_num)
-);
-
-CREATE TABLE orders
-(
-    order_num  INT(11) PRIMARY KEY AUTO_INCREMENT,
-    member     VARCHAR(11) NOT NULL,
-    order_date TIMESTAMP DEFAULT current_timestamp(),
-    FOREIGN KEY (member) REFERENCES member (username)
-);
-
-CREATE TABLE order_product
-(
-    order_num   INT(11),
-    product_num INT(11),
-    quantity    INT(11),
-    PRIMARY KEY (order_num, product_num),
-    FOREIGN KEY (order_num) REFERENCES orders (order_num),
-    FOREIGN KEY (product_num) REFERENCES product (num)
 );
 /*
 

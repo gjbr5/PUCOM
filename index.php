@@ -26,7 +26,7 @@ include "partial/header.php"
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="./img/desktop_odissey.jpg" alt="">
+                        <img src="./img/desktop_odissey.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Desktop<br>Collection</h3>
