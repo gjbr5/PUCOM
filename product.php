@@ -163,7 +163,7 @@ include "partial/js_plugin.php"
             pid:<?php echo substr($_GET['pid'], 0, 4);?>,
             color: $('#color').val(),
             qty: Number($('#qty').val()),
-            number:<?php echo $_GET['c'].substr($_GET['pid'], 0, 4);?>+getColorNum($('#color').val())
+            number: <?php echo $_GET['c'] . substr($_GET['pid'], 0, 4);?>+getColorNum($('#color').val())
         };
         var find = false;
         for (var i = 0; i < list.length; i++) {
@@ -180,8 +180,7 @@ include "partial/js_plugin.php"
     });
 
 
-    function getColorNum(color)
-    {
+    function getColorNum(color) {
         switch (color) {
             case 'Black':
                 return '00';
@@ -197,6 +196,5 @@ include "partial/js_plugin.php"
                 return '55';
         }
     }
-
 </script>
 </html>
