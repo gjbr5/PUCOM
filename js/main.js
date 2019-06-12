@@ -140,7 +140,7 @@
             step: 1,
             range: {
                 'min': 1,
-                'max': 2000
+                'max': 10000
             }
         });
         priceSlider.noUiSlider.on('update', function (values, handle) {
