@@ -23,14 +23,25 @@ include "partial/header.php"
         <!-- row -->
         <div class="row">
             <!-- shop -->
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-6 col-xs-4">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="./img/desktop_odissey.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Desktop<br>Collection</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="product.php?c=100&pid=101000" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-4">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="./img/razor_blade.png" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>Desktop<br>Collection</h3>
+                        <a href="product.php?c=200&pid=107500" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -71,7 +82,7 @@ include "partial/header.php"
                 <div class="row">
                     <div class="products-tabs">
                         <?php
-                        $category = [100, 200, 300, 400, 500];
+                        $category = array(100, 200, 300, 400, 500);
                         for ($i = 0; $i < 5; $i++) {
                             $product = getProduct("SELECT * FROM product WHERE category=$category[$i] ORDER BY upload_date DESC LIMIT 5");
                             ?>
@@ -209,7 +220,7 @@ include "partial/header.php"
                 <div class="row">
                     <div class="products-tabs">
                         <?php
-                        $category = [100, 200, 300, 400, 500];
+                        $category = array(00, 200, 300, 400, 500);
                         for ($i = 0; $i < 5; $i++) {
                             $product = getProduct("SELECT product.*, if(upload_date>now()-interval 1 month, 'y', 'n') as new FROM product WHERE category=$category[$i] ORDER BY upload_date DESC LIMIT 5");
                             ?>
