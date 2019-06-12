@@ -822,14 +822,9 @@ textarea.input {
     position: relative;
 }
 
-.product .product-img > img {
-    width: 100%;
-}
-
 .product .product-img > a > img {
-    width: 100%;
+    width:100%;
 }
-
 .product .product-img .product-label {
     position: absolute;
     top: 15px;

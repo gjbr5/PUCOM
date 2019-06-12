@@ -30,7 +30,8 @@ include "partial/header.php"
                     </div>
                     <div class="shop-body">
                         <h3>Desktop<br>Collection</h3>
-                        <a href="product.php?c=100&pid=101000" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="product.php?c=100&pid=101000" class="cta-btn">Shop now <i
+                                    class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -41,7 +42,8 @@ include "partial/header.php"
                     </div>
                     <div class="shop-body">
                         <h3>Desktop<br>Collection</h3>
-                        <a href="product.php?c=200&pid=107500" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="product.php?c=200&pid=107500" class="cta-btn">Shop now <i
+                                    class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -83,15 +85,19 @@ include "partial/header.php"
                     <div class="products-tabs">
                         <?php
                         $category = array(100, 200, 300, 400, 500);
-                        for ($i = 0; $i < 5; $i++) {
-                            $product = getProduct("SELECT * FROM product WHERE category=$category[$i] ORDER BY upload_date DESC LIMIT 5");
+                        for ($i = 0;
+                             $i < 5;
+                             $i++) {
+                            $product = getProduct("SELECT product.*, if(upload_date>now()-interval 1 month, 'y', 'n') as new  FROM product WHERE category=$category[$i] ORDER BY upload_date DESC LIMIT 5");
                             ?>
                             <!-- tab -->
                             <div id="<?php echo "New_" . getCategory($category[$i]); ?>" class="tab-pane active">
                                 <div class="products-slick" data-nav="#slick-nav-1">
                                     <!-- product -->
                                     <?php
-                                    foreach ($product as $item) { ?>
+                                    foreach ($product
+
+                                             as $item) { ?>
 
                                         <div class="product">
                                             <div class="product-img">
@@ -100,13 +106,15 @@ include "partial/header.php"
                                                          alt="<?php echo $item['name']; ?>">
                                                 </a>
                                                 <?php
-                                                if ($item['sales'] != 0) {
-                                                    echo "
-                                            <div class=\"product-label\">
-                                                <span class=\"sale\">-" . $item['sales'] . "%</span>
-                                                <span class=\"new\">NEW</span>
-                                            </div>";
-                                                } ?>
+                                                if ($item['sales'] != 0 || $item['new'] == 'y') {
+                                                    echo "<div class=\"product-label\">";
+                                                    if ($item['sales'] != 0)
+                                                        echo "<span class=\"sale\">-" . $item['sales'] . "%</span>";
+                                                    if ($item['new'] == 'y')
+                                                        echo "<span class=\"new\">NEW</span>";
+                                                    echo "</div>";
+                                                }
+                                                ?>
                                                 <div class="product-btns">
                                                     <button class="quick-view"><i class="fa fa-eye"></i></a>
                                                         <span class="tooltipp">quick view</span>
@@ -201,7 +209,7 @@ include "partial/header.php"
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">Top selling</h3>
+                    <h3 class="title">Hot Deals</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#Hot_Desktops">Desktops</a></li>
@@ -220,9 +228,11 @@ include "partial/header.php"
                 <div class="row">
                     <div class="products-tabs">
                         <?php
-                        $category = array(00, 200, 300, 400, 500);
-                        for ($i = 0; $i < 5; $i++) {
-                            $product = getProduct("SELECT product.*, if(upload_date>now()-interval 1 month, 'y', 'n') as new FROM product WHERE category=$category[$i] ORDER BY upload_date DESC LIMIT 5");
+                        $category = array(100, 200, 300, 400, 500);
+                        for ($i = 0;
+                             $i < 5;
+                             $i++) {
+                            $product = getProduct("SELECT product.*, if(upload_date>now()-interval 1 month, 'y', 'n') as new  FROM product WHERE category=$category[$i] AND sales>0 LIMIT 5");
                             ?>
                             <!-- tab -->
                             <div id="<?php echo "Hot_" . getCategory($category[$i]); ?>" class="tab-pane active">
@@ -235,12 +245,14 @@ include "partial/header.php"
                                                 <a href="product.php?c=<?php echo $item['category'] . "&pid=" . $item['product_id']; ?>"><img
                                                             src="<?php echo $item['img_url']; ?>" alt=""></a>
                                                 <?php
-                                                echo "
-                                                <div class=\"product-label\">
-                                                <span class=\"sale\">-" . $item['sales'] . "%</span>";
-                                                if ($item['new'] == 'y') echo "<span class=\"new\">NEW</span>";
-                                                echo "</div>";
-                                                ?>
+                                                if ($item['sales'] != 0 || $item['new'] == 'y') {
+                                                    echo "<div class=\"product-label\">";
+                                                    if ($item['sales'] != 0)
+                                                        echo "<span class=\"sale\">-" . $item['sales'] . "%</span>";
+                                                    if ($item['new'] == 'y')
+                                                        echo "<span class=\"new\">NEW</span>";
+                                                    echo "</div>";
+                                                }?>
                                                 <div class="product-btns">
                                                     <button class="quick-view"><i class="fa fa-eye"></i><span
                                                                 class="tooltipp">quick view</span>

@@ -162,10 +162,6 @@ include "partial/header.php";
                                         ?>
                                     </h4>
                                 </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
-                                    </button>
-                                </div>
                             </div>
 
                         </div>
@@ -261,7 +257,12 @@ include "partial/header.php";
     <!-- /container -->
 </div>
 <!-- /SECTION -->
-
+<div id='quick-view-popup'>
+    <span class='button-close'>
+        <span>X</span>
+    </span>
+    <img id="quick-view-img"/>
+</div>
 <!-- FOOTER -->
 <?php
 include "partial/footer.php"
@@ -276,13 +277,15 @@ include "partial/footer.php"
 <script src="js/jquery.zoom.min.js"></script>
 <script src="js/jquery.bpopup.min.js"></script>
 <script type="text/javascript">
-    var BPOPUP='';
-    (function($) {
-        $(function() {
-            $('.quick-view').bind('click', function(e) {
+    var BPOPUP = '';
+    (function ($) {
+        $(function () {
+            $('.quick-view').bind('click', function (e) {
                 e.preventDefault();
-                BPOPUP =  $('#quick-view-popup').bPopup({
-                    modalClose : true
+                var img = $(this).parent().parent().children("a").children("img");
+                $('#quick-view-img').attr('src', img.attr('src'));
+                BPOPUP = $('#quick-view-popup').bPopup({
+                    modalClose: true
                 });
             });
         });
@@ -366,7 +369,7 @@ include "partial/footer.php"
                 step: 1,
                 range: {
                     'min': 1,
-                    'max': 2000
+                    'max': 10000
                 }
             });
             priceSlider.noUiSlider.on('update', function (values, handle) {

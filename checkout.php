@@ -197,6 +197,9 @@ include "partial/js_plugin.php"
             }
         }).open();
     }
+    $('.order-submit').bind('click', function() {
+        setCookie('cart','[]');
+    });
 </script>
 </body>
 </html>
