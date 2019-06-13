@@ -15,7 +15,7 @@ CREATE TABLE product
 (
     num         INT(11) PRIMARY KEY AUTO_INCREMENT,/*기본키*/
     category    INT(11),/*카테고리*/
-    name        VARCHAR(50) NOT NULL,/*상품명*/
+    name        VARCHAR(100) NOT NULL,/*상품명*/
     description TEXT,/*설명*/
     price       DECIMAL(11, 2),/*가격*/
     img_url     VARCHAR(200),/*이미지파일*/

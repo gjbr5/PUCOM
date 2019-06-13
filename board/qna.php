@@ -24,7 +24,7 @@ include "../partial/header.php"
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
-                <h3 class="breadcrumb-header">Q & A</h3>
+                <h3 class="breadcrumb-header">Board</h3>
             </div>
         </div>
         <!-- /row -->
