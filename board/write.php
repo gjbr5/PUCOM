@@ -23,7 +23,7 @@ include "../partial/header.php";
 <div class="section">
     <!-- container -->
     <div class="container">
-        <!-- row -->
+        <!-- row -->s
         <div class="row">
             <div class="col-md-10">
 

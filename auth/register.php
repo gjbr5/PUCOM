@@ -99,7 +99,6 @@ include "../func/Database.php";
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-    <!-- Validation Script -->
     window.onload = function () {
         document.getElementById("password1").onchange = validatePassword;
         document.getElementById("password2").onchange = validatePassword;
@@ -118,7 +117,6 @@ include "../func/Database.php";
             document.getElementById("password2").setCustomValidity("<?php echo $lang['passval'];?>");
         else
             document.getElementById("password2").setCustomValidity('');
-        //empty string means no validation error
     }
 </script>
 <script src="../js/member/register.js"></script>
